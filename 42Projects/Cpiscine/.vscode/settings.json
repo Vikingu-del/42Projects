@@ -1,0 +1,15 @@
+{
+	"C_Cpp.errorSquiggles": "disabled",
+	"files.associations": {
+		"typeinfo": "c",
+		"algorithm": "c",
+		"locale": "c",
+		"bitset": "c",
+		"functional": "c",
+		"iterator": "c",
+		"memory": "c",
+		"sstream": "c",
+		"__string": "c",
+		"string_view": "c"
+	}
+}
