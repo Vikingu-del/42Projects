@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:38:19 by eseferi           #+#    #+#             */
-/*   Updated: 2023/08/08 16:38:26 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:25:55 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	sort_two(t_ps *data, t_chunk *to_sort)
 }
 
 // move a single element from its current location (to_sort->loc) to the top of 
-// Stack A (TOP_A). After the move, the size of the chunk to_sort is decremented 
+// Stack A (TOP_A). After the move,the size of the chunk to_sort is decremented 
 // by 1, indicating that one element has been sorted. 
 void	sort_one(t_ps *data, t_chunk *to_sort)
 {

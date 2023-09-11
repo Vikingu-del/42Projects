@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:40:26 by eseferi           #+#    #+#             */
-/*   Updated: 2023/08/09 13:04:38 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:26:39 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	current_size(t_stack *stk)
 {
 	if (stk->top == stk->bottom && stk->stack[stk->top] == 0)
 		return (0);
-	if (stk->top > stk->bottom) // A condition that should be checked
+	if (stk->top > stk->bottom)
 		return ((stk->size - stk->top) + (stk->bottom + 1));
 	else
 		return (stk->bottom - stk->top + 1);
