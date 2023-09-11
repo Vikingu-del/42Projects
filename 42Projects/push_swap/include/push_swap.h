@@ -15,6 +15,7 @@
 
 # include "stack.h"
 
+// a structure containing numbers refering to locations
 enum			e_loc
 {
 	TOP_A,
@@ -23,12 +24,24 @@ enum			e_loc
 	BOTTOM_B
 };
 
+// the structure of a chunk have an enum e_loc loacation and size
 typedef struct s_chunk
 {
 	enum e_loc	loc;
 	int			size;
 }				t_chunk;
 
+/**
+ * This structure is used to represent the target destinations of a split 
+ * operation:
+ * min: Represents the destination of the smallest values after the split.
+ * mid: Represents the destination of the middle values after the split.
+ * max: Represents the destination of the largest values after the split.
+ * Each of these destinations is of type t_chunk, meaning it specifies 
+ * both the location and size. This structure is used during chunk-
+ * based sorting when the stack is being split into smaller chunks for 
+ * more efficient sorting.
+**/
 typedef struct s_split_dest
 {
 	t_chunk		min;

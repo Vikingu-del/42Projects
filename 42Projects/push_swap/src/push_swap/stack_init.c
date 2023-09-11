@@ -85,6 +85,7 @@ void	check_duplication(t_ps *data, int *numbers, int size)
 	}
 }
 
+// Convert numbers to the representative rank
 void	random_to_rank(int *numbers, int *rank, int size)
 {
 	int	i;

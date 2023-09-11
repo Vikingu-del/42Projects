@@ -12,6 +12,9 @@
 
 #include "push_swap.h"
 
+// It checks the top of the stack and compares it with the smallest and second 
+// smallest elements of the chunk. If a straightforward sort is possible, it 
+// performs it; otherwise, it exits the loop.
 void	easy_sort(t_ps *data, t_chunk *to_sort)
 {
 	while (to_sort->loc != TOP_A && to_sort->size)

@@ -12,6 +12,7 @@
 
 #include "stack.h"
 
+// Transfers the top element from a source stack to a destination stack.
 void	push(t_stack *src, t_stack *dest)
 {
 	int	dest_i;
@@ -25,6 +26,8 @@ void	push(t_stack *src, t_stack *dest)
 	src->top = next_down(src, src->top);
 }
 
+// Transfers the top element from stack b to stack a, and logs the 
+// operation.
 void	push_a(t_ps *data)
 {
 	push(&data->b, &data->a);
@@ -32,6 +35,8 @@ void	push_a(t_ps *data)
 		save_op(data, pa);
 }
 
+// Transfers the top element from stack a to stack b and logs the 
+// operation.
 void	push_b(t_ps *data)
 {
 	push(&data->a, &data->b);

@@ -12,8 +12,8 @@
 
 #include "stack.h"
 
-// inits the t_ps *data that will has stack a, b a bool value and the linked 
-// lists which will store all the operations
+// Initializes the main data structure, including both stacks 
+// and the operations list.
 void	init_data(t_ps *data, int argc, char **argv, bool writing_mode)
 {
 	init_stack(data, &data->a, argc);
@@ -23,8 +23,8 @@ void	init_data(t_ps *data, int argc, char **argv, bool writing_mode)
 	data->op_list = NULL;
 }
 
-// it will init the stacks with the size of the nr of arguments and sets 
-// top and bottom to 0 since we dont have any for the moment
+// Initializes a stack, setting its initial size and filling it with zeros,
+// for ensuring memory safety and establishing a consistent starting state.
 void	init_stack(t_ps *data, t_stack *stk, int size)
 {
 	stk->stack = malloc(sizeof(int) * size);
@@ -36,6 +36,8 @@ void	init_stack(t_ps *data, t_stack *stk, int size)
 	ft_memset(stk->stack, 0, sizeof(int) * size);
 }
 
+// Checks if a given stack is in sorted order 
+// by comparing values to their ranks
 bool	is_sorted(t_ps *data)
 {
 	int	i;
@@ -53,6 +55,7 @@ bool	is_sorted(t_ps *data)
 	return (true);
 }
 
+// Frees allocated memory and exits the program with an error message.
 void	error(t_ps *data)
 {
 	free_data(data);
@@ -60,6 +63,7 @@ void	error(t_ps *data)
 	exit(EXIT_FAILURE);
 }
 
+// Frees allocated memory for stacks and the operations list.
 void	free_data(t_ps *data)
 {
 	if (data->a.stack)

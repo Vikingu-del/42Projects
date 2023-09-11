@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+// refines and simplifies the list of operations 
+// produced during the sorting process.
 void	post_sort_optimization(t_ps *data)
 {
 	if (!data->op_list)

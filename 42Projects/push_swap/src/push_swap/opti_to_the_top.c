@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+// a utility that makes it easier to handle chunks that fill an entire stack, 
+// by updating their location to the top,
 void	chunk_to_the_top(t_ps *data, t_chunk *to_sort)
 {
 	if (to_sort->loc == BOTTOM_B && current_size(&data->b) == to_sort->size)

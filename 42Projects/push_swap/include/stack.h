@@ -19,6 +19,8 @@
 # include <stdbool.h>
 # include <limits.h>
 
+// t_stack Represents a stack with pointers to its top 
+// and bottom and its content.
 typedef struct s_stack
 {
 	int		*stack;
@@ -27,6 +29,8 @@ typedef struct s_stack
 	int		bottom;
 }			t_stack;
 
+// main structure for push_swap, containing two stacks (a and b) 
+// and a list of operations.
 typedef struct s_push_swap
 {
 	t_stack	a;
@@ -35,6 +39,7 @@ typedef struct s_push_swap
 	bool	writing_mode;
 }			t_ps;
 
+// Enumeration for possible operations on the stacks.
 enum		e_op
 {
 	null_op,

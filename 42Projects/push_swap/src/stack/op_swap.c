@@ -12,6 +12,7 @@
 
 #include "stack.h"
 
+// Exchanges the positions of the top two elements of a given stack.
 void	swap(t_stack *stk)
 {
 	int	tmp;
@@ -23,6 +24,8 @@ void	swap(t_stack *stk)
 	stk->stack[stk->top] = tmp;
 }
 
+// Exchanges the positions of the top two elements of stack a,
+// and logs the operation.
 void	swap_a(t_ps *data)
 {
 	swap(&data->a);
@@ -30,6 +33,8 @@ void	swap_a(t_ps *data)
 		save_op(data, sa);
 }
 
+// Exchanges the positions of the top two elements of stack b,
+// and logs the operation.
 void	swap_b(t_ps *data)
 {
 	swap(&data->b);
@@ -37,6 +42,8 @@ void	swap_b(t_ps *data)
 		save_op(data, sb);
 }
 
+// Does the swap for both stacks in the same time and logs 
+// the operation
 void	swap_ab(t_ps *data)
 {
 	swap(&data->a);

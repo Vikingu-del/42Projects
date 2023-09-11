@@ -12,6 +12,9 @@
 
 #include "push_swap.h"
 
+// Based on the location of a chunk of 3 elements,sends the chunk to the top of 
+// stack a, finds the maximum value of the chunk, it sends to the third position
+// and then after, uses sort_two to sort the first two elements.
 void	sort_three(t_ps *data, t_chunk *to_sort)
 {
 	t_stack	*stk;

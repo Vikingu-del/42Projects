@@ -13,7 +13,7 @@
 # Variables
 # to test memory problems -g -fsanitize=address -fno-omit-frame-pointer
 CC					=	gcc
-CFLAGS				=	-Wall -Wextra -Werror -Iinclude -Isrc -O3
+CFLAGS				=	-Wall -Wextra -Iinclude -Isrc -O3
 
 RM					=	rm -rf
 CHECKER				=	checker

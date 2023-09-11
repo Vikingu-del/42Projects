@@ -12,6 +12,7 @@
 
 #include "stack.h"
 
+// Saves a given operation to the operation list in the main data structure.
 void	save_op(t_ps *data, enum e_op op)
 {
 	t_list	*new;
@@ -22,6 +23,7 @@ void	save_op(t_ps *data, enum e_op op)
 	ft_lstadd_back(&data->op_list, new);
 }
 
+// Iterates through the operation list and prints each operation.
 void	print_operations(t_list *head)
 {
 	t_list	*reader;
@@ -34,6 +36,7 @@ void	print_operations(t_list *head)
 	}
 }
 
+// Converts an operation to its string representation.
 const char	*op_to_string(enum e_op op)
 {
 	static const char	*strings[12];
@@ -53,6 +56,7 @@ const char	*op_to_string(enum e_op op)
 	return (strings[op]);
 }
 
+// Converts a list node's content to its corresponding operation.
 enum e_op	op_from(t_list *node)
 {
 	return ((enum e_op)(uintptr_t)node->content);

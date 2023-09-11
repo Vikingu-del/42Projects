@@ -12,6 +12,7 @@
 
 #include "stack.h"
 
+// hifts the elements of a stack downwards, making the bottom element the top.
 void	r_rotate(t_stack *stk)
 {
 	if (is_full(stk))
@@ -28,6 +29,7 @@ void	r_rotate(t_stack *stk)
 	}
 }
 
+// Reverse rotate stack a and logs the operation.
 void	r_rotate_a(t_ps *data)
 {
 	r_rotate(&data->a);
@@ -35,6 +37,7 @@ void	r_rotate_a(t_ps *data)
 		save_op(data, rra);
 }
 
+// reverse rotate stack b and logs the operation.
 void	r_rotate_b(t_ps *data)
 {
 	r_rotate(&data->b);
@@ -42,6 +45,7 @@ void	r_rotate_b(t_ps *data)
 		save_op(data, rrb);
 }
 
+// reverse rotate both stacks and logs the operation
 void	r_rotate_ab(t_ps *data)
 {
 	r_rotate(&data->a);

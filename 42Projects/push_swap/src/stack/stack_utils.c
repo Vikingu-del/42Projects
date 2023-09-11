@@ -12,6 +12,7 @@
 
 #include "stack.h"
 
+// Navigational function to get the next upward index in the stack.
 int	next_up(t_stack *stk, int index)
 {
 	if (current_size(stk) == 0)
@@ -22,6 +23,7 @@ int	next_up(t_stack *stk, int index)
 		return (index - 1);
 }
 
+// Navigational function to get the next downward index in the stack.
 int	next_down(t_stack *stk, int index)
 {
 	if (current_size(stk) == 0)
@@ -32,6 +34,7 @@ int	next_down(t_stack *stk, int index)
 		return (index + 1);
 }
 
+// Retrieves the nth value from the top of the stack
 int	value(t_stack *stk, int n)
 {
 	int	i;
@@ -42,16 +45,18 @@ int	value(t_stack *stk, int n)
 	return (stk->stack[i]);
 }
 
+// Calculates the current number of elements in the stack
 int	current_size(t_stack *stk)
 {
 	if (stk->top == stk->bottom && stk->stack[stk->top] == 0)
 		return (0);
-	if (stk->top > stk->bottom)
+	if (stk->top > stk->bottom) // A condition that should be checked
 		return ((stk->size - stk->top) + (stk->bottom + 1));
 	else
 		return (stk->bottom - stk->top + 1);
 }
 
+// Checks if a given stack is full
 bool	is_full(t_stack *stk)
 {
 	return (stk->size == current_size(stk));

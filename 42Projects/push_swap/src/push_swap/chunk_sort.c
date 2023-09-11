@@ -56,6 +56,9 @@ void	sort_two(t_ps *data, t_chunk *to_sort)
 	to_sort->size -= 2;
 }
 
+// move a single element from its current location (to_sort->loc) to the top of 
+// Stack A (TOP_A). After the move, the size of the chunk to_sort is decremented 
+// by 1, indicating that one element has been sorted. 
 void	sort_one(t_ps *data, t_chunk *to_sort)
 {
 	if (to_sort->loc == BOTTOM_A || to_sort->loc == BOTTOM_B
