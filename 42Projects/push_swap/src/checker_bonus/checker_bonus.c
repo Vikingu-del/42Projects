@@ -6,17 +6,27 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:41:03 by eseferi           #+#    #+#             */
-/*   Updated: 2023/08/08 16:41:05 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/11 19:14:06 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	t_ps	data;
+	char	**quotation_str;
 
-	init_data(&data, argc, argv, false);
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (ft_putendl_fd("Error", 2), 1);
+	else if (argc == 2)
+	{
+		quotation_str = ft_split(argv[1], ' ');
+		init_data(&data, ft_countwords(argv[1], ' '), quotation_str, false);
+		free(quotation_str);
+	}
+	else
+		init_data(&data, --argc, ++argv, false);
 	if (data.a.size == 0)
 		exit(EXIT_SUCCESS);
 	read_op(&data);
