@@ -18,8 +18,8 @@ FT_PRINTF_DIR		=	lib/ft_printf
 FT_PRINTF_FILE		=	$(FT_PRINTF_DIR)/$(FT_PRINTF)
 CFLAGS				+=	-I $(FT_PRINTF_DIR)/include
 
-MLX					=	libmlx.a
-MLX_DIR				=	lib/minilibx
+MLX					=	libmlx.dylib
+MLX_DIR				=	lib/mlx
 MLX_FILE			=	$(MLX_DIR)/$(MLX)
 CFLAGS				+=	-I $(MLX_DIR)
 LDFLAGS				+=	-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
@@ -28,8 +28,9 @@ MAKE_LIB			=	make --no-print-directory -C
 
 # Source and Object Files
 FDF_INC				=	fdf.h
-FDF_SRC				=	main.c fdf.c fdf_utils.c fdf_utils2.c fdf_utils3.c fdf_utils4.c
-FDF_OBJ				=	$(FDF_SRC:%.c=obj/%.o)
+SRC_DIR				=	src
+FDF_SRC				=	$(wildcard $(SRC_DIR)/*.c)
+FDF_OBJ       = 		$(FDF_SRC:$(SRC_DIR)/%.c=obj/%.o)
 
 # Rules
 all:				$(FDF)
@@ -37,11 +38,7 @@ all:				$(FDF)
 obj:
 					mkdir -p obj
 
-LIB					=	$(LIBFT_FILE) $(FT_PRINTF_FILE) $(GET_NEXT_LINE_FILE) $(MLX_FILE)
-
-$(FDF_OBJ):			obj/%.o: %.c $(FDF_INC)
-					@mkdir -p $(dir $@)
-					$(CC) $(CFLAGS) -c $< -o $@
+LIB					=	$(LIBFT_FILE) $(FT_PRINTF_FILE) $(MLX_FILE)
 
 $(LIBFT_FILE):
 					$(MAKE_LIB) $(LIBFT_DIR)
@@ -49,28 +46,24 @@ $(LIBFT_FILE):
 $(FT_PRINTF_FILE):
 					$(MAKE_LIB) $(FT_PRINTF_DIR)
 
-$(GET_NEXT_LINE_FILE):
-					$(MAKE_LIB) $(GET_NEXT_LINE_DIR)
-
 $(MLX_FILE):
 					$(MAKE_LIB) $(MLX_DIR)
 
 $(FDF):				obj $(LIB) $(FDF_OBJ)
 					$(CC) $(CFLAGS) $(FDF_OBJ) $(LIB) -o $(FDF) $(LDFLAGS)
 
-clean:		
+clean:
 					$(MAKE_LIB) $(MLX_DIR) clean
 					$(MAKE_LIB) $(LIBFT_DIR) clean
 					$(MAKE_LIB) $(FT_PRINTF_DIR) clean
-					$(MAKE_LIB) $(GET_NEXT_LINE_DIR) clean
 					$(RM) obj
-fclean:				
+fclean:
 					$(MAKE_LIB) $(MLX_DIR) clean
 					$(MAKE_LIB) $(LIBFT_DIR) fclean
 					$(MAKE_LIB) $(FT_PRINTF_DIR) fclean
-					$(MAKE_LIB) $(GET_NEXT_LINE_DIR) fclean
 					$(RM) obj
 					$(RM) $(FDF)
+
 
 re:					fclean all
 
