@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 19:54:05 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 22:21:07 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/26 23:04:53 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,4 @@
 # define KEY_UP      126
 # define KEY_CTRL    256
 # define KEY_CMD     259
-
 #endif
