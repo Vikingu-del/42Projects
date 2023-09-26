@@ -18,11 +18,6 @@ FT_PRINTF_DIR		=	lib/ft_printf
 FT_PRINTF_FILE		=	$(FT_PRINTF_DIR)/$(FT_PRINTF)
 CFLAGS				+=	-I $(FT_PRINTF_DIR)/include
 
-GET_NEXT_LINE		=	get_next_line.a
-GET_NEXT_LINE_DIR	=	lib/get_next_line
-GET_NEXT_LINE_FILE	=	$(GET_NEXT_LINE_DIR)/$(GET_NEXT_LINE)
-CFLAGS				+=	-I $(GET_NEXT_LINE_DIR)/include
-
 MLX					=	libmlx.a
 MLX_DIR				=	lib/minilibx
 MLX_FILE			=	$(MLX_DIR)/$(MLX)
