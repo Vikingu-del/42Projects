@@ -53,74 +53,81 @@
 # define FIT				1
 # define FREE				0
 
+// A structure to manipulate the points.
 typedef struct s_point {
-	float	axis[3];
-	int		color;
-	int		hex_color;
-	bool	paint;
-	float	polar[2];
+	float	axis[3]; // coordinatess of the point
+	int		color; // color of the point
+	int		hex_color; // hexadecimal color of the point
+	bool	paint; // boolean to check if the point has been painted
+	float	polar[2]; // the distance from the origin and the angle from the x axis to the point in radians (0 to 2pi)
 }	t_point;
 
-typedef struct m_colors {
-	int	topcolor;
-	int	groundcolor;
-	int	bottomcolor;
-	int	backcolor;
-	int	menucolor;	
-}	t_colors;
+// A structure to manipulate the colors.
+typedef struct m_palette {
+	int	topcolor;	// top color of the map
+	int	groundcolor; // ground color of the map
+	int	bottomcolor; // bottom color of the map
+	int	backcolor; // background color of the map
+	int	menucolor; // menu color of the map
+}	t_palette;
 
-typedef struct s_bitmap {
-	void	*img;
-	char	*buffer;
-	int		bitxpixel;
-	int		lines;
-	int		endian;
-}	t_bitmap;
+// A structure to manipulate the images.
+typedef struct s_picture {
+	void	*img; // image pointer to manipulate the image functions and variables
+	char	*buffer; 
+	int		bitxpixel; // the number of bits used to represent a color pixel in the image (32 bits)
+	int		lines; // the number of lines in the image
+	int		endian; // the endian of the image (little endian)
+}	t_picture;
 
+// A structure to manipulate the variables.
 typedef struct s_vars {
-	void	*mlx;
-	void	*win;
+	void	*mlx; // mlx pointer to manipulate the mlx functions and variables
+	void	*win; // windows pointer to manipulate the windows functions and variables
 }	t_vars;
 
+// A structure to manipulate the keys.
 typedef struct s_keys {
-	bool	b_mouse_l;
-	bool	b_mouse_r;
-	bool	b_keyctrl;
-	t_point	last_click_l;
-	t_point	last_click_r;
+	bool			b_mouse_l; // boolean to check if the left mouse button is pressed
+	bool			b_mouse_r; // boolean to check if the right mouse button is pressed
+	bool			b_keyctrl; // boolean to check if the ctrl key is pressed
+	t_point	last_click_l; // informations of the last click of the left mouse button
+	t_point	last_click_r; // informations of the last click of the right mouse button
 }	t_keys;
 
+// A structure to manipulate the map.
 typedef struct m_map {
-	t_point		*points;
-	t_point		limits;
-	t_point		source;
-	t_colors	colors;
-	char		*memory;
-	char		**lines;
-	int			zmin;
-	float		ang[3];
-	float		zdivisor;
-	float		scale;
-	int			len;
-	float		brange;
-	int			renders;
-	bool		b_lines;
-	bool		b_dots;
-	bool		b_pluslines;
-	bool		b_geo;
-	bool		b_stars;
-	bool		b_shadow;
-	double		performance;
-	float		proportion;
-	float		radius;
+	t_point	*points; // points of the map
+	t_point	limits; // limits of the map
+	t_point	source; // source of the map
+	t_palette		colors; // colors of the map
+	char			*memory; // map file
+	char			**lines; // lines of the map
+	int				zmin; // minimum zet value
+	float			ang[3]; // representing the rotation angles
+	float			zdivisor; // zet scale for the map
+	float			scale; // scale factor for the map
+	int				len; // size of the map
+	float			brange; // brightness range
+	int				renders; // number of times the map has been rendered
+	bool			b_lines; // boolean to draw lines
+	bool			b_dots; // boolean to draw dots
+	bool			b_pluslines; // boolean to draw plus lines
+	bool			b_geo; // boolean to draw the geometry of the map
+	bool			b_stars; // boolean to draw stars
+	bool			b_shadow; // boolean to draw shadows
+	double			performance; // performance of the map
+	float			proportions; // proportion of the map
+	float			radius; // radius of the map
 }	t_map;
 
-typedef struct s_meta {
+// All data in one structure.
+typedef struct s_data {
 	t_vars		vars;
-	t_bitmap	bitmap;
+	t_picture	picture;
 	t_map		map;
 	t_keys		keys;
-}	t_meta;
+}	t_data;
 
 # define DEF_COLOR	"\033[0;39m"
 # define SH_GRAY	"\033[0;90m"
