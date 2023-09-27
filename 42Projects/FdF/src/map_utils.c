@@ -6,14 +6,14 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:11:10 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:11:11 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/27 01:44:35 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/defines.h"
 #include "../inc/map.h"
 #include "../inc/draw_utils.h"
-#include "../lib/ft_printf/inc/ft_printf.h"
+#include "../lib/ft_printf/include/ft_printf.h"
 
 void	wire_line(t_point *point, t_meta *meta, int density, int line);
 

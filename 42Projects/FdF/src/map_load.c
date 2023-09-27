@@ -6,11 +6,12 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:56 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:10:59 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/27 02:16:39 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/ft_printf/inc/ft_printf.h"
+#include "../lib/ft_printf/include/ft_printf.h"
+#include "../lib/libft/include/libft.h"
 #include "../inc/defines.h"
 #include "../inc/utils.h"
 #include "../inc/draw_utils.h"

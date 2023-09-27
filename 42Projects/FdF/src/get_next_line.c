@@ -6,11 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:09:29 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:09:37 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/27 01:39:25 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft/libft.h"
+#include "../lib/libft/include/libft.h"
 
 #define BUFFER_SIZE 1000
 

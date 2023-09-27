@@ -15,10 +15,12 @@ INC		 		:= inc/
 LIB				:= lib/
 PRINTF_DIR		:= $(LIB)ft_printf/
 PRINTF			:= $(PRINTF_DIR)libftprintf.a
-MLX_DIR	:= $(LIB)mlx/
-MLX		:= $(MLX_DIR)libmlx.a
+MLX_DIR	:= $(LIB)minilibx_macos/
+MLX		:= $(MLX_DIR)libmlx.dylib
 MLXCC		:= -I mlx -L $(MLX_DIR) -lmlx
-HEADER 			:= -I$(INC) -I$(LIBFT_DIR) -I$(MLX_DIR)
+LIBFT_DIR	:= $(LIB)libft/
+LIBFT	:= $(LIBFT_DIR)libft.a
+HEADER := -I$(INC) -I$(PRINTF_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 OPENGL			:= -framework OpenGL -framework AppKit
 
 # Colors
@@ -52,11 +54,12 @@ all:	makelibs
 
 makelibs:	
 	@$(MAKE) -C $(PRINTF_DIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 	@$(MAKE) -C $(MLX_DIR)
 
 -include 	${DEPS}
 $(NAME):	$(OBJ)		
-			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(PRINTF) $(MLXCC) $(OPENGL) -o $(NAME)		
+			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(PRINTF) $(LIBFT) $(MLXCC) $(OPENGL) -o $(NAME)		
 			@echo "👉 $(BLUE)$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(PRINTF) $(MLXCC) $(OPENGL) -o $(NAME)$(DEF_COLOR)"
 			@echo "$(GREEN)✨ FDF compiled!$(DEF_COLOR)"
 
@@ -73,6 +76,10 @@ $(OBJF):
 $(PRINTF):
 	@make -C $(PRINTF_DIR)
 	@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"	
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
+	
 
 $(MLX):
 	@make -C $(MLX_DIR)

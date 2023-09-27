@@ -6,12 +6,13 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:12:27 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:12:28 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/27 01:46:01 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/miniliblx/minilibx_macos/mlx.h"
-#include "../lib/ft_printf/inc/ft_printf.h"
+#include "../lib/mlx/mlx.h"
+#include "../lib/ft_printf/include/ft_printf.h"
+#include "../lib/libft/include/libft.h"
 #include "../inc/defines.h"
 
 void	print_nbr(t_meta *meta, int x, int y, int nbr)

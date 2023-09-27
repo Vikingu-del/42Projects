@@ -6,13 +6,15 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:42:09 by eseferi           #+#    #+#             */
-/*   Updated: 2023/08/08 20:47:37 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/27 01:42:48 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdio.h>
+# include <string.h>
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>

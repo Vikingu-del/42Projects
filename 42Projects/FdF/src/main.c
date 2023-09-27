@@ -1,4 +1,4 @@
-#include "../lib/miniliblx/minilibx_macos/mlx.h"
+#include "../lib/mlx/mlx.h"
 #include "../inc/defines.h"
 #include "../inc/map.h"
 #include "../inc/control_keys.h"

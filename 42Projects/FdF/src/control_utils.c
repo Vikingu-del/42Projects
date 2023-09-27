@@ -6,12 +6,12 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:07:24 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:07:26 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/27 01:39:16 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/miniliblx/minilibx_macos/mlx.h"
-#include "../lib/libft/libft.h"
+#include "../lib/mlx/mlx.h"
+#include "../lib/libft/include/libft.h"
 #include "../inc/defines.h"
 #include "../inc/keycodes.h"
 #include "../inc/map.h"

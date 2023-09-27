@@ -6,11 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:07:49 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:08:01 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/09/27 01:36:10 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/miniliblx/minilibx_macos/mlx.h"
+#include "../lib/mlx/mlx.h"
 #include "../inc/defines.h"
 #include "../inc/utils.h"
 #include "../inc/draw_utils.h"
