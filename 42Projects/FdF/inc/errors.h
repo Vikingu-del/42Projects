@@ -22,5 +22,5 @@
 # define ERR_MEM		"❌Memory error"
 # define ERR_MAP		"❌Map Error"
 
-void	terminate(char *s);
+void	exit_with_error(char *s);
 #endif

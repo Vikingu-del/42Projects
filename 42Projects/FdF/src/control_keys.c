@@ -22,32 +22,32 @@
 *	This function handle some key press events
 */
 
-void	control_keys3(int key, t_meta *meta)
+void	control_keys3(int key, t_data *data)
 {
 	if (key == KEY_B)
 	{
-		if (meta->keys.b_keyctrl)
-			meta->map.brange -= 0.0001;
+		if (data->keys.b_keyctrl)
+			data->map.brange -= 0.0001;
 		else
-			meta->map.brange += 0.0001;
+			data->map.brange += 0.0001;
 	}
 	if (key == KEY_SUM || key == KEY_SUM2)
 	{
-		if (meta->keys.b_keyctrl)
-			meta->map.scale = meta->map.scale * 1.5;
-		if (meta->map.zdivisor > 1)
-			meta->map.zdivisor -= 10;
+		if (data->keys.b_keyctrl)
+			data->map.scale *= 1.5;
+		if (data->map.zdivisor > 1)
+			data->map.zdivisor -= 1;
 	}
 	if (key == KEY_RES || key == KEY_RES2)
 	{
-		if (meta->keys.b_keyctrl)
-			meta->map.scale = meta->map.scale / 1.5;
-		meta->map.zdivisor += 10;
+		if (data->keys.b_keyctrl)
+			data->map.scale = data->map.scale / 1.5;
+		data->map.zdivisor += 1;
 	}
 	if (key == KEY_I)
 	{
-		isometric(&meta->map);
-		draw_map(meta, FIT);
+		isometric(&data->map);
+		draw_map(data, FIT);
 	}			
 }
 
@@ -55,53 +55,53 @@ void	control_keys3(int key, t_meta *meta)
 *	This function handle some key press events
 */
 
-void	control_keys2(int key, t_meta *meta)
+void	control_keys2(int key, t_data *data)
 {
 	if (key == KEY_D)
-		meta->map.b_dots = !meta->map.b_dots;
+		data->map.b_dots = !data->map.b_dots;
 	if (key == KEY_L)
-		meta->map.b_lines = !meta->map.b_lines;
+		data->map.b_lines = !data->map.b_lines;
 	if (key == KEY_X)
-		meta->map.b_pluslines = !meta->map.b_pluslines;
+		data->map.b_pluslines = !data->map.b_pluslines;
 	if (key == KEY_G)
-		meta->map.b_geo = !meta->map.b_geo;
+		data->map.b_geo = !data->map.b_geo;
 	if (key == KEY_S)
-		meta->map.b_stars = !meta->map.b_stars;
+		data->map.b_stars = !data->map.b_stars;
 	if (key == KEY_H)
-		meta->map.b_shadow = !meta->map.b_shadow;
+		data->map.b_shadow = !data->map.b_shadow;
 	if (key == KEY_F)
-		draw_map(meta, FIT);
+		draw_map(data, FIT);
 	if (key == KEY_CMD)
-		meta->keys.b_keyctrl = 1;
+		data->keys.b_keyctrl = 1;
 }
 
 /* 
 *	This function handle some key press events
 */
 
-void	control_keys1(int key, t_meta *meta)
+void	control_keys1(int key, t_data *data)
 {
 	if (key == KEY_ESC)
-		terminate_program(meta);
+		terminate_program(data);
 	if (key == KEY_R)
 	{
-		map_ini(&meta->map, 0);
-		meta->map.proportion = \
-		meta->map.limits.axis[Z] / meta->map.limits.axis[X];
-		if (meta->map.proportion > 0.5)
-			meta->map.zdivisor = meta->map.proportion * 30;
-		colorize(&meta->map);
-		draw_map(meta, FIT);
+		init_map(&data->map, 0);
+		data->map.proportion = \
+		data->map.limits.coordinates[Z] / data->map.limits.coordinates[X];
+		if (data->map.proportion > 0.5)
+			data->map.zdivisor = data->map.proportion * 30;
+		colorize(&data->map);
+		draw_map(data, FIT);
 	}	
 	if (key == KEY_C)
 	{
-		meta->map.source.axis[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
-		meta->map.source.axis[Y] = WINY / 2;
+		data->map.source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
+		data->map.source.coordinates[Y] = WINY / 2;
 	}
 	if (key == KEY_P)
 	{
-		parallel(&meta->map);
-		draw_map(meta, FIT);
+		parallel(&data->map);
+		draw_map(data, FIT);
 	}			
 }
 
@@ -111,16 +111,16 @@ void	control_keys1(int key, t_meta *meta)
 
 int	key_press(int key, void *param)
 {
-	t_meta	*meta;
+	t_data	*data;
 
-	meta = (t_meta *)param;
-	angle_control(key, meta);
-	control_keys1(key, meta);
-	control_keys2(key, meta);
-	control_keys3(key, meta);
+	data = (t_data *)param;
+	angle_control(key, data);
+	control_keys1(key, data);
+	control_keys2(key, data);
+	control_keys3(key, data);
 	if (key >= KEY_1 && key <= KEY_4)
-		control_colorscheme(key, &meta->map);
-	draw_map(meta, FREE);
+		control_colorscheme(key, &data->map);
+	draw_map(data, FREE);
 	return (0);
 }
 
@@ -130,10 +130,10 @@ int	key_press(int key, void *param)
 
 int	key_release(int key, void *param)
 {
-	t_meta	*meta;
+	t_data	*data;
 
-	meta = (t_meta *)param;
+	data = (t_data *)param;
 	if (key == KEY_CMD)
-		meta->keys.b_keyctrl = 0;
+		data->keys.b_keyctrl = 0;
 	return (0);
 }

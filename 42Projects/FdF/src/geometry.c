@@ -24,9 +24,9 @@ void	traslate(t_point *points, t_point move, int len)
 	i = 0;
 	while (i < len)
 	{
-		points[i].axis[X] = points[i].axis[X] + move.axis[X];
-		points[i].axis[Y] = points[i].axis[Y] + move.axis[Y];
-		points[i].axis[Z] = points[i].axis[Z] + move.axis[Z];
+		points[i].coordinates[X] = points[i].coordinates[X] + move.coordinates[X];
+		points[i].coordinates[Y] = points[i].coordinates[Y] + move.coordinates[Y];
+		points[i].coordinates[Z] = points[i].coordinates[Z] + move.coordinates[Z];
 		i++;
 	}
 }
@@ -42,9 +42,9 @@ void	scale(t_point *points, int scale, int len)
 	i = 0;
 	while (i < len)
 	{
-		points[i].axis[X] = points[i].axis[X] * scale;
-		points[i].axis[Y] = points[i].axis[Y] * scale;
-		points[i].axis[Z] = points[i].axis[Z] * scale;
+		points[i].coordinates[X] = points[i].coordinates[X] * scale;
+		points[i].coordinates[Y] = points[i].coordinates[Y] * scale;
+		points[i].coordinates[Z] = points[i].coordinates[Z] * scale;
 		i++;
 	}
 }
@@ -60,8 +60,8 @@ void	isometric(t_map *map)
 	map->ang[Y] = 330;
 	map->ang[Z] = 30;
 	map->brange = 0;
-	map->source.axis[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
-	map->source.axis[Y] = WINY / 2;
+	map->source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
+	map->source.coordinates[Y] = WINY / 2;
 }
 
 /*
@@ -75,8 +75,8 @@ void	parallel(t_map *map)
 	map->ang[Y] = 0;
 	map->ang[Z] = 0;
 	map->brange = 0;
-	map->source.axis[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
-	map->source.axis[Y] = WINY / 2;
+	map->source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
+	map->source.coordinates[Y] = WINY / 2;
 }
 
 /*
@@ -92,9 +92,9 @@ void	bending(t_point *points, int len, float range)
 	i = 0;
 	while (i < len)
 	{
-		vv = ((points[i].axis[X] * points[i].axis[X]) * (range)) + \
-		(points[i].axis[Y] * points[i].axis[Y]) * (range);
-		points[i].axis[Z] = points[i].axis[Z] - vv;
+		vv = ((points[i].coordinates[X] * points[i].coordinates[X]) * (range)) + \
+		(points[i].coordinates[Y] * points[i].coordinates[Y]) * (range);
+		points[i].coordinates[Z] = points[i].coordinates[Z] - vv;
 		i++;
 	}
 }

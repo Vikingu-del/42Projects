@@ -13,10 +13,10 @@
 #ifndef CONTROL_UTILS_H
 # define CONTROL_UTILS_H
 
-void	angle_control(int key, t_meta *meta);
+void	angle_control(int key, t_data *data);
 void	angle(float *ang, float value);
 void	colorize(t_map *map);
 int		terminate_program(void *param);
-void	terminate(char *s);
+void	exit_with_error(char *s);
 void	control_colorscheme(int key, t_map *map);
 #endif

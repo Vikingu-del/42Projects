@@ -19,19 +19,19 @@
 *	Auxiliar function to draw a circle
 */
 
-static void	dot_util(t_meta *meta, t_point pixel, t_point point, int coord)
+static void	dot_util(t_data *data, t_point pixel, t_point point, int coord)
 {
 	int	i;
 
-	i = point.axis[X];
-	while (i <= point.axis[X] + coord)
+	i = point.coordinates[X];
+	while (i <= point.coordinates[X] + coord)
 	{
-		pixel.axis[X] = i;
-		pixel.axis[Y] = (int)point.axis[Y] + coord;
-		my_putpixel(meta, pixel);
-		pixel.axis[X] = i;
-		pixel.axis[Y] = (int)point.axis[Y] - coord;
-		my_putpixel(meta, pixel);
+		pixel.coordinates[X] = i;
+		pixel.coordinates[Y] = (int)point.coordinates[Y] + coord;
+		my_putpixel(data, pixel);
+		pixel.coordinates[X] = i;
+		pixel.coordinates[Y] = (int)point.coordinates[Y] - coord;
+		my_putpixel(data, pixel);
 		i++;
 	}
 }
@@ -40,29 +40,29 @@ static void	dot_util(t_meta *meta, t_point pixel, t_point point, int coord)
 *	This function draw a circule in t_point position and with r radius
 */
 
-void	draw_dot(t_meta *meta, t_point point, int radius)
+void	draw_dot(t_data *data, t_point point, int radius)
 {
-	int		axis[2];
+	int		coordinates[2];
 	int		change[2];
 	int		radius_error;
 	t_point	pixel;
 
-	axis[X] = radius;
-	axis[Y] = 0;
+	coordinates[X] = radius;
+	coordinates[Y] = 0;
 	change[X] = 1 - (radius << 1);
 	change[Y] = 0;
 	radius_error = 0;
 	pixel.color = point.color;
-	while (axis[X] >= axis[Y])
+	while (coordinates[X] >= coordinates[Y])
 	{
-		dot_util(meta, pixel, point, axis[Y]);
-		dot_util(meta, pixel, point, axis[X]);
-		axis[Y]++;
+		dot_util(data, pixel, point, coordinates[Y]);
+		dot_util(data, pixel, point, coordinates[X]);
+		coordinates[Y]++;
 		radius_error += change[Y];
 		change[Y] += 2;
 		if (((radius_error << 1) + change[X]) > 0)
 		{
-			axis[X]--;
+			coordinates[X]--;
 			radius_error += change[X];
 			change[X] += 2;
 		}
@@ -102,7 +102,7 @@ void	shadow(t_point *points, int len)
 	i = 0;
 	while (i < len)
 	{
-		if (points[i].axis[Z] < 0)
+		if (points[i].coordinates[Z] < 0)
 			points[i].paint = 0;
 		else
 			points[i].paint = 1;
@@ -116,7 +116,7 @@ void	shadow(t_point *points, int len)
 *	Then calculate all the point of the line with the Bresenham's line algorithm
 */
 
-int	draw_line(t_meta *meta, t_point start, t_point end)
+int	draw_line(t_data *data, t_point start, t_point end)
 {
 	t_point	delta;
 	t_point	pixel;
@@ -125,21 +125,21 @@ int	draw_line(t_meta *meta, t_point start, t_point end)
 
 	if (valid_pixel(start) == 0 && valid_pixel(end) == 0)
 		return (0);
-	delta.axis[X] = end.axis[X] - start.axis[X];
-	delta.axis[Y] = end.axis[Y] - start.axis[Y];
-	pixels = sqrt((delta.axis[X] * delta.axis[X]) + \
-			(delta.axis[Y] * delta.axis[Y]));
+	delta.coordinates[X] = end.coordinates[X] - start.coordinates[X];
+	delta.coordinates[Y] = end.coordinates[Y] - start.coordinates[Y];
+	pixels = sqrt((delta.coordinates[X] * delta.coordinates[X]) + \
+			(delta.coordinates[Y] * delta.coordinates[Y]));
 	len = pixels;
-	delta.axis[X] /= pixels;
-	delta.axis[Y] /= pixels;
-	pixel.axis[X] = start.axis[X];
-	pixel.axis[Y] = start.axis[Y];
+	delta.coordinates[X] /= pixels;
+	delta.coordinates[Y] /= pixels;
+	pixel.coordinates[X] = start.coordinates[X];
+	pixel.coordinates[Y] = start.coordinates[Y];
 	while (pixels > 0)
 	{
 		pixel.color = gradient(start.color, end.color, len, len - pixels);
-		my_putpixel(meta, pixel);
-		pixel.axis[X] += delta.axis[X];
-		pixel.axis[Y] += delta.axis[Y];
+		my_putpixel(data, pixel);
+		pixel.coordinates[X] += delta.coordinates[X];
+		pixel.coordinates[Y] += delta.coordinates[Y];
 		pixels = pixels - 1;
 	}
 	return (1);

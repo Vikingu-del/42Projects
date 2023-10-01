@@ -35,25 +35,25 @@ void	angle(float *ang, float value)
 *	This function add grades to the control structure depends the key pressed
 */
 
-void	angle_control(int key, t_meta *meta)
+void	angle_control(int key, t_data *data)
 {
 	int	ang;
 
 	ang = 1;
-	if (meta->keys.b_keyctrl)
+	if (data->keys.b_keyctrl)
 		ang = 90;
 	if (key == KEY_DOWN)
-		angle(&meta->map.ang[X], ang);
+		angle(&data->map.ang[X], ang);
 	if (key == KEY_UP)
-		angle(&meta->map.ang[X], -ang);
+		angle(&data->map.ang[X], -ang);
 	if (key == KEY_LEFT)
-		angle(&meta->map.ang[Y], ang);
+		angle(&data->map.ang[Y], ang);
 	if (key == KEY_RIGHT)
-		angle(&meta->map.ang[Y], -ang);
+		angle(&data->map.ang[Y], -ang);
 	if (key == KEY_Q)
-		angle(&meta->map.ang[Z], ang);
+		angle(&data->map.ang[Z], ang);
 	if (key == KEY_W)
-		angle(&meta->map.ang[Z], -ang);
+		angle(&data->map.ang[Z], -ang);
 }
 
 /* 
@@ -62,11 +62,11 @@ void	angle_control(int key, t_meta *meta)
 
 int	terminate_program(void *param)
 {
-	t_meta	*meta;
+	t_data	*data;
 
-	meta = (t_meta *)param;
-	mlx_destroy_window(meta->vars.mlx, meta->vars.win);
-	free(meta->map.points);
+	data = (t_data *)param;
+	mlx_destroy_window(data->vars.mlx, data->vars.win);
+	free(data->map.points);
 	exit(0);
 }
 
@@ -74,7 +74,7 @@ int	terminate_program(void *param)
 *	This function handle the program shut down when a error happends
 */
 
-void	terminate(char *s)
+void	exit_with_error(char *s)
 {
 	if (errno == 0)
 		ft_putendl_fd(s, 2);
@@ -89,28 +89,28 @@ void	terminate(char *s)
 
 void	control_colorscheme(int key, t_map *map)
 {
-	map->colors.backcolor = CARBON;
-	map->colors.bottomcolor = AZUL;
-	map->colors.topcolor = BRICK_RED;
-	map->colors.groundcolor = SAFFRON;
+	map->palette.backcolor = CARBON;
+	map->palette.bottomcolor = AZUL;
+	map->palette.topcolor = BRICK_RED;
+	map->palette.groundcolor = SAFFRON;
 	if (key == KEY_2)
 	{
-		map->colors.backcolor = WHITE;
-		map->colors.bottomcolor = CARBON;
-		map->colors.topcolor = CARBON;
-		map->colors.groundcolor = CARBON;
+		map->palette.backcolor = WHITE;
+		map->palette.bottomcolor = CARBON;
+		map->palette.topcolor = CARBON;
+		map->palette.groundcolor = CARBON;
 	}
 	if (key == KEY_3)
 	{
-		map->colors.bottomcolor = WHITE;
-		map->colors.topcolor = WHITE;
-		map->colors.groundcolor = WHITE;
+		map->palette.bottomcolor = WHITE;
+		map->palette.topcolor = WHITE;
+		map->palette.groundcolor = WHITE;
 	}
 	if (key == KEY_4)
 	{
-		map->colors.bottomcolor = SUPERAZUL;
-		map->colors.topcolor = ROJO;
-		map->colors.groundcolor = VERDE;
+		map->palette.bottomcolor = SUPERAZUL;
+		map->palette.topcolor = ROJO;
+		map->palette.groundcolor = VERDE;
 	}
 	colorize(map);
 }

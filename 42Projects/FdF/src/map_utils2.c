@@ -21,7 +21,7 @@
 *	All the colors are defined in fdf.h 
 */
 
-void	load_color(int max, int min, t_point *point, t_colors	colors)
+void	load_color(int max, int min, t_point *point, t_palette	palette)
 {
 	point->paint = 1;
 	point->color = DEFAULT_COLOR;
@@ -30,18 +30,18 @@ void	load_color(int max, int min, t_point *point, t_colors	colors)
 		point->color = point->hex_color;
 		return ;
 	}
-	if (point->axis[Z] == max)
-		point->color = colors.topcolor;
-	else if (point->axis[Z] == 0)
-		point->color = colors.groundcolor;
-	else if (point->axis[Z] == min && min != 0)
-		point->color = colors.bottomcolor;
-	else if (point->axis[Z] > 0)
-		point->color = gradient(colors.groundcolor, colors.topcolor, \
-		max, point->axis[Z]);
+	if (point->coordinates[Z] == max)
+		point->color = palette.topcolor;
+	else if (point->coordinates[Z] == 0)
+		point->color = palette.groundcolor;
+	else if (point->coordinates[Z] == min && min != 0)
+		point->color = palette.bottomcolor;
+	else if (point->coordinates[Z] > 0)
+		point->color = gradient(palette.groundcolor, palette.topcolor, \
+		max, point->coordinates[Z]);
 	else
-		point->color = gradient(colors.bottomcolor, colors.groundcolor, \
-		-min, - (min - point->axis[Z]));
+		point->color = gradient(palette.bottomcolor, palette.groundcolor, \
+		-min, - (min - point->coordinates[Z]));
 }
 
 int	has_hexcolors(char *line)
@@ -79,23 +79,23 @@ int	valid_point(char *value)
 		return (1);
 }
 
-static void	map_ini_colors(t_map *map)
+static void	init_map_colors(t_map *map)
 {
-	map->colors.backcolor = BACK_COLOR;
-	map->colors.menucolor = MENU_COLOR;
-	map->colors.bottomcolor = BOTTOM_COLOR;
-	map->colors.groundcolor = GROUND_COLOR;
-	map->colors.topcolor = TOP_COLOR;
+	map->palette.backcolor = BACK_COLOR;
+	map->palette.menucolor = MENU_COLOR;
+	map->palette.bottomcolor = BOTTOM_COLOR;
+	map->palette.groundcolor = GROUND_COLOR;
+	map->palette.topcolor = TOP_COLOR;
 }
 
-void	map_ini(t_map *map, int total)
+void	init_map(t_map *map, int clean_state)
 {
-	if (total)
+	if (clean_state)
 	{
 		map->len = 0;
-		map->limits.axis[X] = 0;
-		map->limits.axis[Y] = 0;
-		map->limits.axis[Z] = 0;
+		map->limits.coordinates[X] = 0;
+		map->limits.coordinates[Y] = 0;
+		map->limits.coordinates[Z] = 0;
 		map->zmin = 0;
 	}
 	map->b_lines = 1;
@@ -107,11 +107,11 @@ void	map_ini(t_map *map, int total)
 	map->scale = 1;
 	map->zdivisor = 1;
 	map->brange = 0;
-	map->source.axis[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
-	map->source.axis[Y] = WINY / 2;
-	map->source.axis[Z] = 0;
+	map->source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
+	map->source.coordinates[Y] = WINY / 2;
+	map->source.coordinates[Z] = 0;
 	map->ang[X] = 0;
 	map->ang[Y] = 0;
 	map->ang[Z] = 0;
-	map_ini_colors(map);
+	init_map_colors(map);
 }

@@ -14,13 +14,13 @@
 # define MAP_UTILS_H
 
 void	colorize(t_map *map);
-void	wired(t_meta *meta, t_point *wire);
-void	doted(t_meta *meta, t_point *proyect);
+void	wired(t_data *data, t_point *wire);
+void	doted(t_data *data, t_point *proyect);
 void	z_division(t_point *proyect, float divisor, int len);
-void	map_ini(t_map *map, int total);
+void	init_map(t_map *map, int clean_state);
 void	show_info(t_map *map);
 void	z_limits(char **splited, t_map *map);
 int		valid_point(char *value);
 int		has_hexcolors(char *line);
-void	load_color(int max, int min, t_point *point, t_colors	colors);
+void	load_color(int max, int min, t_point *point, t_palette palette);
 #endif

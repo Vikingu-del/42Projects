@@ -33,9 +33,9 @@ void	copy_map(t_point *src, t_point *dst, int len)
 
 int	valid_pixel(t_point pixel)
 {
-	if (pixel.axis[X] < 0 || pixel.axis[X] > WINX)
+	if (pixel.coordinates[X] < 0 || pixel.coordinates[X] > WINX)
 		return (0);
-	if (pixel.axis[Y] < 0 || pixel.axis[Y] > WINY)
+	if (pixel.coordinates[Y] < 0 || pixel.coordinates[Y] > WINY)
 		return (0);
 	return (1);
 }

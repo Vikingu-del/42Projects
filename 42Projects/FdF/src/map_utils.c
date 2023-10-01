@@ -15,7 +15,7 @@
 #include "../inc/draw_utils.h"
 #include "../lib/ft_printf/include/ft_printf.h"
 
-void	wire_line(t_point *point, t_meta *meta, int density, int line);
+void	wire_line(t_point *point, t_data *data, int density, int line);
 
 /* 
 *	This function iterate all the points of the wire array and draw a line between:
@@ -23,40 +23,40 @@ void	wire_line(t_point *point, t_meta *meta, int density, int line);
 *	--> wire[i] and wire [i + x_max * density]
 */
 
-void	wired(t_meta *meta, t_point *wire)
+void	wired(t_data *data, t_point *wire)
 {
 	int	i;
 	int	density;
 
-	density = 8 / meta->map.scale;
+	density = 8 / data->map.scale;
 	if (density == 0)
 		density = 1;
 	i = 0;
-	while (i < meta->map.len)
+	while (i < data->map.len)
 	{
-		wire_line (&wire[i], meta, density, i / meta->map.limits.axis[X]);
-		i = i + meta->map.limits.axis[X] * density;
+		wire_line (&wire[i], data, density, i / data->map.limits.coordinates[X]);
+		i = i + data->map.limits.coordinates[X] * density;
 	}
 }
 
-void	wire_line(t_point *point, t_meta *meta, int density, int line)
+void	wire_line(t_point *point, t_data *data, int density, int line)
 {
 	int	i;
 	int	x_end;
 	int	y_end;
 
 	i = 0;
-	while (i < (int)meta->map.limits.axis[X])
+	while (i < (int)data->map.limits.coordinates[X])
 	{
 		x_end = i + density;
-		if (x_end >= (int)meta->map.limits.axis[X])
-			x_end = (int)meta->map.limits.axis[X] - 1;
-		y_end = i + (int)meta->map.limits.axis[X] * density;
+		if (x_end >= (int)data->map.limits.coordinates[X])
+			x_end = (int)data->map.limits.coordinates[X] - 1;
+		y_end = i + (int)data->map.limits.coordinates[X] * density;
 		if (point[i].paint)
 		{
-			draw_line(meta, point[i], point[x_end]);
-			if (line + density < (int)meta->map.limits.axis[Y])
-				draw_line(meta, point[i], point[y_end]);
+			draw_line(data, point[i], point[x_end]);
+			if (line + density < (int)data->map.limits.coordinates[Y])
+				draw_line(data, point[i], point[y_end]);
 		}
 		i += density;
 	}
@@ -73,8 +73,8 @@ void	colorize(t_map *map)
 	i = 0;
 	while (i < map->len)
 	{
-		load_color((int)map->limits.axis[Z], map->zmin, \
-		&map->points[i], map->colors);
+		load_color((int)map->limits.coordinates[Z], map->zmin, \
+		&map->points[i], map->palette);
 		i++;
 	}
 }
@@ -83,15 +83,15 @@ void	colorize(t_map *map)
 *	This function iterate all the points of the array and draw a dot for each point
 */
 
-void	doted(t_meta *meta, t_point *proyect)
+void	doted(t_data *data, t_point *proyect)
 {
 	int	i;
 
 	i = 0;
-	while (i < meta->map.len)
+	while (i < data->map.len)
 	{
 		if (proyect[i].paint)
-			draw_dot(meta, proyect[i], 1);
+			draw_dot(data, proyect[i], 1);
 		i++;
 	}
 }
@@ -108,7 +108,7 @@ void	z_division(t_point *proyect, float divisor, int len)
 	i = 0;
 	while (i < len)
 	{
-		proyect[i].axis[Z] = proyect[i].axis[Z] / divisor;
+		proyect[i].coordinates[Z] = proyect[i].coordinates[Z] / divisor;
 		i++;
 	}
 }

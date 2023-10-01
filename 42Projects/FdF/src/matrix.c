@@ -29,12 +29,12 @@ t_point	mul_mat(float matrix[3][3], t_point point)
 	i = 0;
 	while (i < 3)
 	{
-		result.axis[i] = 0;
+		result.coordinates[i] = 0;
 		result.color = point.color;
 		k = 0;
 		while (k < 3)
 		{
-			result.axis[i] += matrix[i][k] * point.axis[k];
+			result.coordinates[i] += matrix[i][k] * point.coordinates[k];
 			k++;
 		}
 		i++;

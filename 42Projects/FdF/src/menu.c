@@ -20,106 +20,106 @@
 #define LINE_SIZE			30
 #define MENU_TAB			30
 
-static void	draw_colorscheme(t_meta *meta)
+static void	draw_colorscheme(t_data *data)
 {
 	int		line;
 
 	line = COLORSCHEME_BOX;
-	print_str(meta, MENU_TAB, line, "//// COLORSCHEME ////");
+	print_str(data, MENU_TAB, line, "//// COLORSCHEME ////");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "0: DEFAULT");
+	print_str(data, MENU_TAB, line, "0: DEFAULT");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "1: TERRAIN");
+	print_str(data, MENU_TAB, line, "1: TERRAIN");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "2: BLACK & WHITE");
+	print_str(data, MENU_TAB, line, "2: BLACK & WHITE");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "3: WHITE & BLACK");
+	print_str(data, MENU_TAB, line, "3: WHITE & BLACK");
 	line += LINE_SIZE;
 }
 
-static void	draw_mapinfo(t_meta *meta)
+static void	draw_mapinfo(t_data *data)
 {
 	int		line;
 
 	line = MAPINFO_BOX;
-	print_str(meta, MENU_TAB, line, "//// MAP INFO ////");
+	print_str(data, MENU_TAB, line, "//// MAP INFO ////");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Size:");
-	print_nbr(meta, MENU_TAB + 80, line, meta->map.len);
+	print_str(data, MENU_TAB, line, "Size:");
+	print_nbr(data, MENU_TAB + 80, line, data->map.len);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Xmax:");
-	print_nbr(meta, MENU_TAB + 80, line, meta->map.limits.axis[X]);
+	print_str(data, MENU_TAB, line, "Xmax:");
+	print_nbr(data, MENU_TAB + 80, line, data->map.limits.coordinates[X]);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Ymax:");
-	print_nbr(meta, MENU_TAB + 80, line, meta->map.limits.axis[Y]);
+	print_str(data, MENU_TAB, line, "Ymax:");
+	print_nbr(data, MENU_TAB + 80, line, data->map.limits.coordinates[Y]);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Zmax:");
-	print_nbr(meta, MENU_TAB + 80, line, meta->map.limits.axis[Z]);
+	print_str(data, MENU_TAB, line, "Zmax:");
+	print_nbr(data, MENU_TAB + 80, line, data->map.limits.coordinates[Z]);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Zmin:");
-	print_nbr(meta, MENU_TAB + 80, line, meta->map.zmin);
+	print_str(data, MENU_TAB, line, "Zmin:");
+	print_nbr(data, MENU_TAB + 80, line, data->map.zmin);
 	line += LINE_SIZE;
 }
 
-static void	draw_controls(t_meta *meta)
+static void	draw_controls(t_data *data)
 {
 	int		line;
 
 	line = CONTROL_BOX;
-	print_str(meta, MENU_TAB, line, "//// CONTROLS ////");
+	print_str(data, MENU_TAB, line, "//// CONTROLS ////");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Scroll: Zom In/Out");
+	print_str(data, MENU_TAB, line, "Scroll: Zom In/Out");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Left Click: Rotate X/Y axis");
+	print_str(data, MENU_TAB, line, "Left Click: Rotate X/Y coordinates");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Right Click: Move");
+	print_str(data, MENU_TAB, line, "Right Click: Move");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Arrows: Rotate X/Y axis");
+	print_str(data, MENU_TAB, line, "Arrows: Rotate X/Y coordinates");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Q/W: Rotate Z axis");
+	print_str(data, MENU_TAB, line, "Q/W: Rotate Z coordinates");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "+/-: Z Divisor");
+	print_str(data, MENU_TAB, line, "+/-: Z Divisor");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "B/Ctr + B: Blending");
+	print_str(data, MENU_TAB, line, "B/Ctr + B: Blending");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "P/I Parralell/Isometric Views");
+	print_str(data, MENU_TAB, line, "P/I Parralell/Isometric Views");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "F/C Fit/Center");
+	print_str(data, MENU_TAB, line, "F/C Fit/Center");
 	line += LINE_SIZE;
 }
 
-static void	draw_info(t_meta *meta)
+static void	draw_info(t_data *data)
 {
 	int		line;
 
 	line = DRAWINFO_BOX;
-	print_str(meta, MENU_TAB, line, "//// DRAW INFO ////");
+	print_str(data, MENU_TAB, line, "//// DRAW INFO ////");
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Reenders:");
-	print_nbr(meta, MENU_TAB + 100, line, meta->map.renders);
+	print_str(data, MENU_TAB, line, "Reenders:");
+	print_nbr(data, MENU_TAB + 100, line, data->map.renders);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Performance(ms):");
-	print_nbr(meta, MENU_TAB + 170, line, meta->map.performance * 1000);
+	print_str(data, MENU_TAB, line, "Performance(ms):");
+	print_nbr(data, MENU_TAB + 170, line, data->map.performance * 1000);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "X, Y, Z: [   ] [   ] [   ]");
-	print_nbr(meta, MENU_TAB + 100, line, meta->map.ang[X]);
-	print_nbr(meta, MENU_TAB + 160, line, meta->map.ang[Y]);
-	print_nbr(meta, MENU_TAB + 220, line, meta->map.ang[Z]);
+	print_str(data, MENU_TAB, line, "X, Y, Z: [   ] [   ] [   ]");
+	print_nbr(data, MENU_TAB + 100, line, data->map.ang[X]);
+	print_nbr(data, MENU_TAB + 160, line, data->map.ang[Y]);
+	print_nbr(data, MENU_TAB + 220, line, data->map.ang[Z]);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Zoom:");
-	print_nbr(meta, MENU_TAB + 80, line, meta->map.scale);
+	print_str(data, MENU_TAB, line, "Zoom:");
+	print_nbr(data, MENU_TAB + 80, line, data->map.scale);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Z Divisor:");
-	print_nbr(meta, MENU_TAB + 110, line, meta->map.zdivisor);
+	print_str(data, MENU_TAB, line, "Z Divisor:");
+	print_nbr(data, MENU_TAB + 110, line, data->map.zdivisor);
 	line += LINE_SIZE;
-	print_str(meta, MENU_TAB, line, "Blending:");
-	print_nbr(meta, MENU_TAB + 100, line, meta->map.brange * 10000);
+	print_str(data, MENU_TAB, line, "Blending:");
+	print_nbr(data, MENU_TAB + 100, line, data->map.brange * 10000);
 }
 
-void	draw_menu(t_meta *meta)
+void	draw_menu(t_data *data)
 {
-	draw_controls(meta);
-	draw_info(meta);
-	draw_mapinfo(meta);
-	draw_colorscheme(meta);
+	draw_controls(data);
+	draw_info(data);
+	draw_mapinfo(data);
+	draw_colorscheme(data);
 }

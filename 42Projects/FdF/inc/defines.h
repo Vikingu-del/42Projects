@@ -25,27 +25,27 @@
 # define LAT 0
 # define LONG 1
 
-# define ROJO 		0xc1272d
-# define VERDE		0x33cc55
-# define FUCSIA 	0xff255c
-# define AZUL		0x1B8EFA
-# define SUPERAZUL	0x0000FF
-# define CARBON		0x151515
-# define WHITE		0xBBBBBB
-# define DISCO		0x9A1F6A
-# define BRICK_RED	0xC2294E
-# define FLAMINGO	0xEC4B27
-# define JAFFA		0xEF8633
-# define SAFFRON	0xF3AF3D
+# define RED			0xc1272d
+# define GREEN			0x33cc55
+# define FUCHSIA		0xff255c
+# define BLUE			0x1B8EFA
+# define LIGHT_BLUE		0x0000FF
+# define BLACK			0x151515
+# define GRAY			0xBBBBBB
+# define PURPLE			0x9A1F6A
+# define DARK_RED		0xC2294E
+# define ORANGE			0xEC4B27
+# define YELLOW_ORANGE	0xEF8633
+# define YELLOW			0xF3AF3D
 
-# define DEFAULT_COLOR		JAFFA
-# define BOTTOM_COLOR		AZUL
-# define TOP_COLOR			BRICK_RED
-# define GROUND_COLOR		SAFFRON
-# define BACK_COLOR			0x151515
-# define MENU_COLOR			0x202020
+# define DEFAULT_COLOR		YELLOW_ORANGE
+# define BOTTOM_COLOR		BLUE
+# define TOP_COLOR			DARK_RED
+# define GROUND_COLOR		YELLOW
+# define BACK_COLOR			BLACK
+# define MENU_COLOR			GRAY
 # define TEXT_COLOR			0xEAEAEA	
-# define NUMBER_COLOR		0xF3AF3D
+# define NUMBER_COLOR		YELLOW
 
 # define MENU_WIDTH			350
 # define FIT_MARGIN			50
@@ -55,7 +55,7 @@
 
 // A structure to manipulate the points.
 typedef struct s_point {
-	float	axis[3]; // coordinatess of the point
+	float	coordinates[3]; // coordinatess of the point
 	int		color; // color of the point
 	int		hex_color; // hexadecimal color of the point
 	bool	paint; // boolean to check if the point has been painted
@@ -101,7 +101,7 @@ typedef struct m_map {
 	t_point	limits; // limits of the map
 	t_point	source; // source of the map
 	t_palette		colors; // colors of the map
-	char			*memory; // map file
+	char			*content; // map file
 	char			**lines; // lines of the map
 	int				zmin; // minimum zet value
 	float			ang[3]; // representing the rotation angles

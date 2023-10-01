@@ -18,10 +18,10 @@
 #define YCENTER				WINY / 2
 */
 
-int		draw_map(t_meta *meta, int fit);
-void	load_map(t_map *map, char *path);
-void	generate_background(t_meta *meta, int backcolor, int menucolor);
-void	draw_menu(t_meta *meta);
-void	load_color(int max, int min, t_point *point, t_colors	colors);
-void	generate_stars(t_meta *meta);
+int		draw_map(t_data *data, int fit);
+void	load_map(t_map *map, char *file);
+void	generate_background(t_data *data, int backcolor, int menucolor);
+void	draw_menu(t_data *data);
+void	load_color(int max, int min, t_point *point, t_palette palette);
+void	generate_stars(t_data *data);
 #endif
