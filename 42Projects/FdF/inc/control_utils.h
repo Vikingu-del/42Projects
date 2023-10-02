@@ -15,7 +15,7 @@
 
 void	angle_control(int key, t_data *data);
 void	angle(float *ang, float value);
-void	colorize(t_map *map);
+void	apply_color_scheme(t_map *map);
 int		terminate_program(void *param);
 void	exit_with_error(char *s);
 void	control_colorscheme(int key, t_map *map);

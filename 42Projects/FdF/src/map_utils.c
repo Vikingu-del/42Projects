@@ -66,7 +66,7 @@ void	wire_line(t_point *point, t_data *data, int density, int line)
 *	Colorize all the points of the map
 */
 
-void	colorize(t_map *map)
+void	apply_color_scheme(t_map *map)
 {
 	int	i;
 

@@ -44,39 +44,39 @@ void	load_color(int max, int min, t_point *point, t_palette	palette)
 		-min, - (min - point->coordinates[Z]));
 }
 
-int	has_hexcolors(char *line)
+int	has_hexcolors(char *str_point)
 {
 	char	**color;
-	int		get_color;
+	int		color_nr;
 
-	if (ft_strchr(line, ',') != 0)
+	if (ft_strchr(str_point, ',') != 0)
 	{
-		color = ft_split(line, ',');
-		get_color = strtol(color[1] + 2, NULL, 16);
-		dbl_free(color);
-		return (get_color);
+		color = ft_split(str_point, ',');
+		color_nr = ft_atoi_base(color[1] + 2, "0123456789ABCDEF");
+		free_2darray(color);
+		return (color_nr);
 	}
 	else
 		return (0);
 }
 
-int	valid_point(char *value)
+int	point_is_valid(char *str_point)
 {
-	int	valid;
+	int	true_false;
 
-	valid = 0;
-	if (*value == '-' || *value == '+' || ft_isdigit(*value))
-		valid++;
-	value++;
-	while (ft_isdigit(*value))
+	true_false = false;
+	if (*str_point == '-' || *str_point == '+' || ft_isdigit(*str_point))
+		true_false++;
+	str_point++;
+	while (ft_isdigit(*str_point))
 	{
-		value++;
-		valid++;
+		str_point++;
+		true_false++;
 	}
-	if (valid == 0)
-		return (0);
+	if (true_false == false)
+		return (false);
 	else
-		return (1);
+		return (true);
 }
 
 static void	init_map_colors(t_map *map)

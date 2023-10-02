@@ -29,7 +29,7 @@ void	print_str(t_data *data, int x, int y, char *str)
 	mlx_string_put(data->vars.mlx, data->vars.win, x, y, TEXT_COLOR, str);
 }
 
-void	dbl_free(char **ptr)
+void	free_2darray(char **ptr)
 {
 	int	i;
 

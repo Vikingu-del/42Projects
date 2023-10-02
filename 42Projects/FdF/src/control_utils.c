@@ -112,5 +112,5 @@ void	control_colorscheme(int key, t_map *map)
 		map->palette.topcolor = ROJO;
 		map->palette.groundcolor = VERDE;
 	}
-	colorize(map);
+	apply_color_scheme(map);
 }

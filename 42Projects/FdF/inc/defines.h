@@ -97,7 +97,7 @@ typedef struct s_keys {
 
 // A structure to manipulate the map.
 typedef struct m_map {
-	t_point	*points; // points of the map
+	t_point	*points; // an array with points of the map
 	t_point	limits; // limits of the map
 	t_point	source; // source of the map
 	t_palette		colors; // colors of the map

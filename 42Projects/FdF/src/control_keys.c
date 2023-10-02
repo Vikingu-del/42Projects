@@ -90,7 +90,7 @@ void	control_keys1(int key, t_data *data)
 		data->map.limits.coordinates[Z] / data->map.limits.coordinates[X];
 		if (data->map.proportion > 0.5)
 			data->map.zdivisor = data->map.proportion * 30;
-		colorize(&data->map);
+		apply_color_scheme(&data->map);
 		draw_map(data, FIT);
 	}	
 	if (key == KEY_C)

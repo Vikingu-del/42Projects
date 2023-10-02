@@ -25,7 +25,7 @@
 #define BLOCK_READ 500000
 
 static	void	count_map_len(t_map *map);
-static	void	map_get_points(t_map *map);
+static	void	parse_points(t_map *map);
 static	char	*read_map(int fd);
 
 /* 
@@ -46,9 +46,9 @@ void	load_map(t_map *map, char *file)
 		exit_with_error(ERR_OPEN);
 	map->content = read_map(fd);
 	close (fd);
-	count_map_len(map);
-	map_get_points(map);
-	colorize(map);
+	map_len(map);
+	parse_points(map);
+	apply_color_scheme(map);
 	go_polar(map);
 	ft_printf("\nLoading GUI\n");
 }
@@ -89,30 +89,30 @@ static char	*read_map(int fd)
 
 static int	load_points(char *line, t_map *map, int numline)
 {
-	char		**splited;
+	char		**point_elements;
 	int			i;
-	static int	point_index = 0;
+	static int	i_point = 0;
 
-	splited = ft_split(line, ' ');
+	point_elements = ft_split(line, ' ');
 	i = 0;
-	while (splited[i] && splited[i][0] != '\n')
+	while (point_elements[i]
 	{
-		if (!valid_point(&splited[i][0]))
+		if (!point_is_valid(&point_elements[i][0]))
 			exit_with_error(ERR_EMPTY);
-		map->points[point_index].coordinates[Z] = ft_atoi(&splited[i][0]);
-		map->points[point_index].coordinates[X] = i - map->limits.coordinates[X] / 2;
-		map->points[point_index].coordinates[Y] = numline - map->limits.coordinates[Y] / 2;
-		map->points[point_index].paint = 1;
-		map->points[point_index].color = DEFAULT_COLOR;
-		map->points[point_index].hex_color = has_hexcolors (splited[i]);
-		if (map->limits.coordinates[Z] < map->points[point_index].coordinates[Z])
-			map->limits.coordinates[Z] = map->points[point_index].coordinates[Z];
-		if (map->zmin > map->points[point_index].coordinates[Z])
-			map->zmin = map->points[point_index].coordinates[Z];
+		map->points[i_point].coordinates[Z] = ft_atoi(&point_elements[i][0]);
+		map->points[i_point].coordinates[X] = i - map->limits.coordinates[X] / 2;
+		map->points[i_point].coordinates[Y] = numline - map->limits.coordinates[Y] / 2;
+		map->points[i_point].paint = 1;
+		map->points[i_point].color = DEFAULT_COLOR;
+		map->points[i_point].hex_color = has_hexcolors (point_elements[i]);
+		if (map->limits.coordinates[Z] < map->points[i_point].coordinates[Z])
+			map->limits.coordinates[Z] = map->points[i_point].coordinates[Z];
+		if (map->zmin > map->points[i_point].coordinates[Z])
+			map->zmin = map->points[i_point].coordinates[Z];
 		i++;
-		point_index++;
+		i_point++;
 	}
-	dbl_free(splited);
+	dbl_free(point_elements);
 	return (i);
 }
 
@@ -121,7 +121,7 @@ static int	load_points(char *line, t_map *map, int numline)
 *	and terminate if the maps has different line sizes.
 */
 
-static	void	count_map_len(t_map *map)
+static	void	map_len(t_map *map)
 {
 	static int	i = -1;
 	static int	row_size = 0;	
@@ -150,7 +150,7 @@ static	void	count_map_len(t_map *map)
 	map->len = map->limits.coordinates[X] * map->limits.coordinates[Y];
 }
 
-static	void	map_get_points(t_map *map)
+static	void	parse_points(t_map *map)
 {
 	int			i;
 	char		*line;
