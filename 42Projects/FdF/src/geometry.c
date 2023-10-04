@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:08:48 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:08:50 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:01:31 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	traslate(t_point *points, t_point move, int len)
 *	Iterates all the points and multiply by scale
 */
 
-void	scale(t_point *points, int scale, int len)
+void	scale_map(t_point *points, int scale, int len)
 {
 	int	i;
 

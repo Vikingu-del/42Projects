@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 19:39:08 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:04:32 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:02:25 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GEOMETRY_H
 
 void	traslate(t_point *points, t_point move, int len);
-void	scale(t_point *points, int scale, int len);
+void	scale_map(t_point *points, int scale, int len);
 void	isometric(t_map *map);
 void	curving(t_point *points, int len, float curve_range);
 void	parallel(t_map *map);

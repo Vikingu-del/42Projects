@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 23:14:55 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:03:03 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	parse_map(t_data *data, t_point *projections)
 	if (data->map.sphere && data->map.shadows)
 		apply_shadow (projections, data->map.len);
 	orthographic_projection (projections, projections, data->map.len);
-	scale (projections, data->map.scale, data->map.len);
+	scale_map (projections, data->map.scale, data->map.len);
 	traslate(projections, data->map.source, data->map.len);
 }
 
