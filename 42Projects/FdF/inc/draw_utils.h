@@ -15,7 +15,7 @@
 
 int		draw_line(t_data *data, t_point start, t_point end);
 void	draw_dot(t_data *data, t_point point, int radius);
-int		gradient(int startcolor, int endcolor, int len, int pix);
+int		gradient(int groundcolor, int topcolor, int len, int point);
 int		my_putpixel(t_data *data, t_point pixel);
-void	shadow(t_point *points, int len);
+void	apply_shadow(t_point *points, int len);
 #endif

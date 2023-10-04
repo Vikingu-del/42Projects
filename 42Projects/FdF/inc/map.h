@@ -18,7 +18,7 @@
 #define YCENTER				WINY / 2
 */
 
-int		draw_map(t_data *data, int fit);
+int		draw_map(t_data *data, int should_fit_window)
 void	load_map(t_map *map, char *file);
 void	generate_background(t_data *data, int backcolor, int menucolor);
 void	draw_menu(t_data *data);

@@ -44,17 +44,8 @@ void	free_2darray(char **ptr)
 	free (ptr);
 }
 
-int	ft_round(double num)
-{
-	int	rounded;
-
-	rounded = (int)num;
-	if (num - rounded >= .5)
-		rounded++;
-	return (rounded);
-}
-
-void	matrix_init(float (*matrix)[3])
+// setting all the values of the matrix to 0
+void	init_matrix(float matrix[][3])
 {
 	int	i;
 	int	j;

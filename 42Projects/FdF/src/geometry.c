@@ -55,11 +55,11 @@ void	scale(t_point *points, int scale, int len)
 
 void	isometric(t_map *map)
 {
-	map->b_geo = 0;
+	map->sphere = 0;
 	map->ang[X] = 30;
 	map->ang[Y] = 330;
 	map->ang[Z] = 30;
-	map->brange = 0;
+	map->curve_range = 0;
 	map->source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
 	map->source.coordinates[Y] = WINY / 2;
 }
@@ -70,11 +70,11 @@ void	isometric(t_map *map)
 
 void	parallel(t_map *map)
 {
-	map->b_geo = 0;
+	map->sphere = 0;
 	map->ang[X] = 90;
 	map->ang[Y] = 0;
 	map->ang[Z] = 0;
-	map->brange = 0;
+	map->curve_range = 0;
 	map->source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
 	map->source.coordinates[Y] = WINY / 2;
 }
@@ -84,17 +84,20 @@ void	parallel(t_map *map)
 *	and the x and y position
 */
 
-void	bending(t_point *points, int len, float range)
+void	curving(t_point *points, int len, float curve_range)
 {
 	int		i;
-	float	vv;
+	float	x_squared;
+	float	y_squared;
 
+	x_squared = 0;
+	y_squared = 0;
 	i = 0;
 	while (i < len)
 	{
-		vv = ((points[i].coordinates[X] * points[i].coordinates[X]) * (range)) + \
-		(points[i].coordinates[Y] * points[i].coordinates[Y]) * (range);
-		points[i].coordinates[Z] = points[i].coordinates[Z] - vv;
+		x_squared = pow(points[i].coordinates[X], 2);
+		y_squared = pow(points[i].coordinates[Y], 2);
+		points[i].coordinates[Z] -= curve_range * (x_squared + y_squared);
 		i++;
 	}
 }

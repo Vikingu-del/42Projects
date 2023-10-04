@@ -13,8 +13,10 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
-void	orto_proyection(t_point *points, t_point *proyection, int len);
-void	rotate_x(t_point *points, t_point *proyection, float ang, int len);
-void	rotate_y(t_point *points, t_point *proyection, float ang, int len);
-void	rotate_z(t_point *points, t_point *proyection, float ang, int len);
+void	orthographic_projection(t_point *points, t_point *proyection, int len);
+void	rotate_x(t_point *points, t_point *projection, float ang, int len);
+void    rotate_y(t_point *points, t_point *projection, float ang, int len);
+void    rotate_z(t_point *points, t_point *projection, float ang, int len);
+void	init_matrix(float matrix[][3]);
+t_point point_mult_matrix(t_point *point, float matrix[][3]);
 #endif

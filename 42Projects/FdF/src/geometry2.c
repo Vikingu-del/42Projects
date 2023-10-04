@@ -13,7 +13,7 @@
 #include "../inc/defines.h"
 #include <math.h>
 
-void	spherize(t_map *map, t_point *points)
+void	sphering(t_map *map, t_point *points)
 {
 	int	i;
 
@@ -30,25 +30,26 @@ void	spherize(t_map *map, t_point *points)
 	}
 }
 
-void	go_polar(t_map *map)
+// this function converts the cartesian to polar coordinates
+void	cart_to_pol(t_map *map)
 {
 	int		i;
-	float	steps_x;
-	float	steps_y;
+	float	θ;
+	float	φ;
 
-	steps_x = (M_PI * 2) / (map->limits.coordinates[X] - 1);
-	steps_y = M_PI / (map->limits.coordinates[Y]);
+	θ = (M_PI * 2) / (map->limits.coordinates[X] - 1);
+	φ = M_PI / (map->limits.coordinates[Y]);
 	map->radius = map->limits.coordinates[X] / (M_PI * 2);
 	i = 0;
 	while (i < map->len)
 	{
-		map->points[i].polar[LONG] = -(map->points[i].coordinates[X]) * steps_x;
+		map->points[i].polar[LONG] = -(map->points[i].coordinates[X]) * θ;
 		if (map->points[i].coordinates[Y] > 0)
 			map->points[i].polar[LAT] = ((map->points[i].coordinates[Y]) + \
-			(map->limits.coordinates[Y] / 2)) * steps_y - 0.5 * steps_y;
+			(map->limits.coordinates[Y] / 2)) * φ - 0.5 * φ;
 		else
 			map->points[i].polar[LAT] = (map->points[i].coordinates[Y] + \
-			(map->limits.coordinates[Y] / 2) - 1) * steps_y + 0.5 * steps_y;
+			(map->limits.coordinates[Y] / 2) - 1) * φ + 0.5 * φ;
 		i++;
 	}
 }

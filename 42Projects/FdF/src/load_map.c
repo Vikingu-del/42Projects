@@ -49,8 +49,8 @@ void	load_map(t_map *map, char *file)
 	map_len(map);
 	parse_points(map);
 	apply_color_scheme(map);
-	go_polar(map);
-	ft_printf("\nLoading GUI\n");
+	cart_to_pol(map);
+	ft_printf("\nOpening Window\n");
 }
 
 static char	*read_map(int fd)
@@ -112,7 +112,7 @@ static int	load_points(char *line, t_map *map, int numline)
 		i++;
 		i_point++;
 	}
-	dbl_free(point_elements);
+	free_2darray(point_elements);
 	return (i);
 }
 

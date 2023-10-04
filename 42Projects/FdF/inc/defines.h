@@ -64,17 +64,17 @@ typedef struct s_point {
 
 // A structure to manipulate the colors.
 typedef struct m_palette {
-	int	topcolor;	// top color of the map
-	int	groundcolor; // ground color of the map
-	int	bottomcolor; // bottom color of the map
-	int	backcolor; // background color of the map
-	int	menucolor; // menu color of the map
+	int	topcolor;	// top color of a point
+	int	groundcolor; // ground color of a point
+	int	bottomcolor; // bottom color of a point
+	int	backcolor; // background color of a point
+	int	menucolor; // menu color of a point
 }	t_palette;
 
-// A structure to manipulate the images.
+// A structure to translate the picture to bitmap format.
 typedef struct s_picture {
 	void	*img; // image pointer to manipulate the image functions and variables
-	char	*buffer; 
+	char	*buffer;  // memory address of every pixel in the image
 	int		bitxpixel; // the number of bits used to represent a color pixel in the image (32 bits)
 	int		lines; // the number of lines in the image
 	int		endian; // the endian of the image (little endian)
@@ -91,33 +91,33 @@ typedef struct s_keys {
 	bool			b_mouse_l; // boolean to check if the left mouse button is pressed
 	bool			b_mouse_r; // boolean to check if the right mouse button is pressed
 	bool			b_keyctrl; // boolean to check if the ctrl key is pressed
-	t_point	last_click_l; // informations of the last click of the left mouse button
-	t_point	last_click_r; // informations of the last click of the right mouse button
+	t_point			last_click_l; // informations of the last click of the left mouse button
+	t_point			last_click_r; // informations of the last click of the right mouse button
 }	t_keys;
 
 // A structure to manipulate the map.
 typedef struct m_map {
-	t_point	*points; // an array with points of the map
-	t_point	limits; // limits of the map
-	t_point	source; // source of the map
+	t_point			*points; // an array with points of the map
+	t_point			limits; // limits of the map
+	t_point			source; // source of the map
 	t_palette		colors; // colors of the map
 	char			*content; // map file
 	char			**lines; // lines of the map
 	int				zmin; // minimum zet value
 	float			ang[3]; // representing the rotation angles
-	float			zdivisor; // zet scale for the map
+	float			z_scale; // scales the z coordinates of each point in the map when rendering the map
 	float			scale; // scale factor for the map
 	int				len; // size of the map
-	float			brange; // brightness range
+	float			curve_range; // curving range of the map
 	int				renders; // number of times the map has been rendered
 	bool			b_lines; // boolean to draw lines
 	bool			b_dots; // boolean to draw dots
 	bool			b_pluslines; // boolean to draw plus lines
-	bool			b_geo; // boolean to draw the geometry of the map
+	bool			sphere; // boolean to spherize the map
 	bool			b_stars; // boolean to draw stars
-	bool			b_shadow; // boolean to draw shadows
+	bool			shadows; // boolean to draw shadows
 	double			performance; // performance of the map
-	float			proportions; // proportion of the map
+	float			ratio; // ratio of the map zmax / number of points
 	float			radius; // radius of the map
 }	t_map;
 

@@ -70,32 +70,33 @@ void	draw_dot(t_data *data, t_point point, int radius)
 }
 
 /*
-*	This function generates the color of each pixel between starcolor and endcolor
+*	This function generates the color of each pixel between groundcolor and topcolor
 *	To do that get the RGB chanels independtly and create a 
 *	linear escale between each channel.
 *	The function return the color number "pix" of line "0->len".
 */
 
-int	gradient(int startcolor, int endcolor, int len, int pix)
+int	gradient(int groundcolor, int topcolor, int len, int point)
 {
 	double	increment[3];
 	int		new[3];
 	int		newcolor;
 
-	increment[0] = (double)((endcolor >> 16) - \
-					(startcolor >> 16)) / (double)len;
-	increment[1] = (double)(((endcolor >> 8) & 0xFF) - \
-					((startcolor >> 8) & 0xFF)) / (double)len;
-	increment[2] = (double)((endcolor & 0xFF) - (startcolor & 0xFF)) \
+	increment[0] = (double)((topcolor >> 16) - \
+					(groundcolor >> 16)) / (double)len;
+	increment[1] = (double)(((topcolor >> 8) & 0xFF) - \
+					((groundcolor >> 8) & 0xFF)) / (double)len;
+	increment[2] = (double)((topcolor & 0xFF) - (groundcolor & 0xFF)) \
 					/ (double)len;
-	new[0] = (startcolor >> 16) + ft_round(pix * increment[0]);
-	new[1] = ((startcolor >> 8) & 0xFF) + ft_round(pix * increment[1]);
-	new[2] = (startcolor & 0xFF) + ft_round(pix * increment[2]);
+	new[0] = (groundcolor >> 16) + round(point * increment[0]);
+	new[1] = ((groundcolor >> 8) & 0xFF) + round(point * increment[1]);
+	new[2] = (groundcolor & 0xFF) + round(point * increment[2]);
 	newcolor = (new[0] << 16) + (new[1] << 8) + new[2];
 	return (newcolor);
 }
 
-void	shadow(t_point *points, int len)
+// apply a shadow effect to the points that are behind the camera
+void	apply_shadow(t_point *points, int len)
 {
 	int		i;
 

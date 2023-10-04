@@ -27,20 +27,20 @@
 *	Call all the functions to modify the points in the space
 */
 
-static void	parse_map(t_data *data, t_point *proyect)
+static void	parse_map(t_data *data, t_point *projections)
 {
-	z_division(proyect, data->map.zdivisor, data->map.len);
-	bending(proyect, data->map.len, data->map.brange);
-	if (data->map.b_geo)
-		spherize(&data->map, proyect);
-	rotate_x(proyect, proyect, data->map.ang[X], data->map.len);
-	rotate_y(proyect, proyect, data->map.ang[Y], data->map.len);
-	rotate_z(proyect, proyect, data->map.ang[Z], data->map.len);
-	if (data->map.b_geo && data->map.b_shadow)
-		shadow (proyect, data->map.len);
-	orto_proyection (proyect, proyect, data->map.len);
-	scale (proyect, data->map.scale, data->map.len);
-	traslate(proyect, data->map.source, data->map.len);
+	z_scaling(projections, data->map.z_scale, data->map.len);
+	curving(projections, data->map.len, data->map.curve_range);
+	if (data->map.sphere)
+		sphering(&data->map, projections);
+	rotate_x(projections, projections, data->map.ang[X], data->map.len);
+	rotate_y(projections, projections, data->map.ang[Y], data->map.len);
+	rotate_z(projections, projections, data->map.ang[Z], data->map.len);
+	if (data->map.sphere && data->map.shadows)
+		apply_shadow (projections, data->map.len);
+	orthographic_projection (projections, projections, data->map.len);
+	scale (projections, data->map.scale, data->map.len);
+	traslate(projections, data->map.source, data->map.len);
 }
 
 /* 
@@ -86,7 +86,7 @@ static void	go_fit(t_data *data, t_point *proyect)
 	}
 }
 
-void	drawing(t_data *data, t_point *proyect, int fit)
+void	draw_map_points(t_data *data, t_point *proyect, int fit)
 {
 	if (data->map.b_stars)
 		generate_stars(data);
@@ -104,26 +104,27 @@ void	drawing(t_data *data, t_point *proyect, int fit)
 *	scale needed to fit the screen.
 */
 
-int	draw_map(t_data *data, int fit)
+int draw_map(t_data *data, int should_fit_window)
 {
-	t_point	*proyect;
-	clock_t	t;
+    t_point *projected_points;
+    clock_t start_time;
 
-	t = clock();
-	proyect = malloc (data->map.len * sizeof(t_point));
-	if (proyect == NULL)
-		exit_with_error(ERR_MEM);
-	data->map.renders = data->map.renders + 1;
-	generate_background(data, data->map.palette.backcolor, \
-	data->map.palette.menucolor);
-	copy_map(data->map.points, proyect, data->map.len);
-	parse_map(data, proyect);
-	drawing(data, proyect, fit);
-	mlx_put_image_to_window(data->vars.mlx, data->vars.win, \
-	data->bitmap.img, 0, 0);
-	draw_menu(data);
-	free (proyect);
-	t = clock() - t;
-	data->map.performance = ((double)t) / CLOCKS_PER_SEC;
-	return (1);
+    start_time = clock();
+    projected_points = malloc(data->map.len * sizeof(t_point));
+    if (projected_points == NULL)
+        exit_with_error(ERR_MEM);
+    data->map.renders++;
+    generate_background(data, data->map.palette.backcolor, \
+        data->map.palette.menucolor);
+    copy_map_points(data->map.points, projected_points, data->map.len);
+    parse_map(data, projected_points);
+    draw_map_points(data, projected_points, should_fit_window);
+    mlx_put_image_to_window(data->vars.mlx, data->vars.win, \
+        data->bitmap.img, 0, 0);
+    draw_menu(data);
+    free(projected_points);
+    clock_t end_time = clock();
+    double elapsed_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+    data->map.performance = elapsed_time;
+    return (1);
 }

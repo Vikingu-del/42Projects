@@ -15,7 +15,7 @@
 *	This function copy len points of the array from src to dst
 */
 
-void	copy_map(t_point *src, t_point *dst, int len)
+void	copy_map_points(t_point *map_points, t_point *projection, int map_size)
 {
 	int	i;
 

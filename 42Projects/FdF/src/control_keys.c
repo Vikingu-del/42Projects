@@ -27,22 +27,22 @@ void	control_keys3(int key, t_data *data)
 	if (key == KEY_B)
 	{
 		if (data->keys.b_keyctrl)
-			data->map.brange -= 0.0001;
+			data->map.curve_range -= 0.0001;
 		else
-			data->map.brange += 0.0001;
+			data->map.curve_range += 0.0001;
 	}
 	if (key == KEY_SUM || key == KEY_SUM2)
 	{
 		if (data->keys.b_keyctrl)
 			data->map.scale *= 1.5;
-		if (data->map.zdivisor > 1)
-			data->map.zdivisor -= 1;
+		if (data->map.z_scale > 1)
+			data->map.z_scale -= 1;
 	}
 	if (key == KEY_RES || key == KEY_RES2)
 	{
 		if (data->keys.b_keyctrl)
 			data->map.scale = data->map.scale / 1.5;
-		data->map.zdivisor += 1;
+		data->map.z_scale += 1;
 	}
 	if (key == KEY_I)
 	{
@@ -64,11 +64,11 @@ void	control_keys2(int key, t_data *data)
 	if (key == KEY_X)
 		data->map.b_pluslines = !data->map.b_pluslines;
 	if (key == KEY_G)
-		data->map.b_geo = !data->map.b_geo;
+		data->map.sphere = !data->map.sphere;
 	if (key == KEY_S)
 		data->map.b_stars = !data->map.b_stars;
 	if (key == KEY_H)
-		data->map.b_shadow = !data->map.b_shadow;
+		data->map.shadows = !data->map.shadows;
 	if (key == KEY_F)
 		draw_map(data, FIT);
 	if (key == KEY_CMD)
@@ -89,7 +89,7 @@ void	control_keys1(int key, t_data *data)
 		data->map.proportion = \
 		data->map.limits.coordinates[Z] / data->map.limits.coordinates[X];
 		if (data->map.proportion > 0.5)
-			data->map.zdivisor = data->map.proportion * 30;
+			data->map.z_scale = data->map.proportion * 30;
 		apply_color_scheme(&data->map);
 		draw_map(data, FIT);
 	}	

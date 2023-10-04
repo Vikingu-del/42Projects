@@ -18,10 +18,8 @@
 #include <stdlib.h>
 
 /*
-*	This function fills 4 bytes of the given address whith the values of colors
-*	depending the andian
-*      endian = 1 --> Most significant (Alpha) byte first
-*      endian = 0 --> Least significant (Blue) byte first
+	used to set the color value of a pixel in the bitmap image, taking 
+	into account the byte order of the system.
 */
 
 void	set_color(char *buffer, int endian, int color, int alpha)
@@ -117,7 +115,7 @@ void	generate_stars(t_data *data)
 	int		lim_x[2];
 	int		lim_y[2];
 
-	if (data->map.b_geo == 0)
+	if (data->map.sphere == 0)
 		return ;
 	lim_x[0] = data->map.source.coordinates[X] - (data->map.radius * data->map.scale);
 	lim_x[1] = data->map.source.coordinates[X] + (data->map.radius * data->map.scale);

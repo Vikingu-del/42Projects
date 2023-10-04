@@ -23,7 +23,6 @@
 
 void	load_color(int max, int min, t_point *point, t_palette	palette)
 {
-	point->paint = 1;
 	point->color = DEFAULT_COLOR;
 	if (point->hex_color > 0)
 	{
@@ -42,6 +41,7 @@ void	load_color(int max, int min, t_point *point, t_palette	palette)
 	else
 		point->color = gradient(palette.bottomcolor, palette.groundcolor, \
 		-min, - (min - point->coordinates[Z]));
+	point->paint = 1;
 }
 
 int	has_hexcolors(char *str_point)
@@ -98,15 +98,15 @@ void	init_map(t_map *map, int clean_state)
 		map->limits.coordinates[Z] = 0;
 		map->zmin = 0;
 	}
+	map->z_scale = 1;
+	map->scale = 1;
+	map->curve_range = 0;
 	map->b_lines = 1;
 	map->b_dots = 0;
 	map->b_pluslines = 0;
-	map->b_geo = 0;
+	map->sphere = 0;
 	map->b_stars = 0;
-	map->b_shadow = 1;
-	map->scale = 1;
-	map->zdivisor = 1;
-	map->brange = 0;
+	map->shadows = 1;
 	map->source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
 	map->source.coordinates[Y] = WINY / 2;
 	map->source.coordinates[Z] = 0;

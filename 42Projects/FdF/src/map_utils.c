@@ -97,18 +97,19 @@ void	doted(t_data *data, t_point *proyect)
 }
 
 /* 
-*	This function iterate len points of the array and 
-*	divide de z axis by divisor
+ * This function iterate through all z coordinates and scales them to fit the screen
+ * in a way that the highest point of the map is at the top of the screen and the
+ * lowest point is at the bottom.
 */
 
-void	z_division(t_point *proyect, float divisor, int len)
+void	z_scaling(t_point *projected, float z_scale, int map_size)
 {
-	int	i;
+	int	point;
 
-	i = 0;
-	while (i < len)
+	point = 0;
+	while (point < len)
 	{
-		proyect[i].coordinates[Z] = proyect[i].coordinates[Z] / divisor;
+		projected[point].coordinates[Z] = projected[point].coordinates[Z] / z_scale;
 		i++;
 	}
 }

@@ -110,7 +110,7 @@ static void	draw_info(t_data *data)
 	print_nbr(data, MENU_TAB + 80, line, data->map.scale);
 	line += LINE_SIZE;
 	print_str(data, MENU_TAB, line, "Z Divisor:");
-	print_nbr(data, MENU_TAB + 110, line, data->map.zdivisor);
+	print_nbr(data, MENU_TAB + 110, line, data->map.z_scale);
 	line += LINE_SIZE;
 	print_str(data, MENU_TAB, line, "Blending:");
 	print_nbr(data, MENU_TAB + 100, line, data->map.brange * 10000);
