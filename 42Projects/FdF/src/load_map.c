@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_load.c                                         :+:      :+:    :+:   */
+/*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:56 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 02:16:39 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 23:20:49 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	load_map(t_map *map, char *file)
 		exit_with_error(ERR_OPEN);
 	map->content = read_map(fd);
 	close (fd);
-	map_len(map);
+	count_map_len(map);
 	parse_points(map);
 	apply_color_scheme(map);
 	cart_to_pol(map);
@@ -95,7 +95,7 @@ static int	load_points(char *line, t_map *map, int numline)
 
 	point_elements = ft_split(line, ' ');
 	i = 0;
-	while (point_elements[i]
+	while (point_elements[i])
 	{
 		if (!point_is_valid(&point_elements[i][0]))
 			exit_with_error(ERR_EMPTY);
@@ -121,7 +121,7 @@ static int	load_points(char *line, t_map *map, int numline)
 *	and terminate if the maps has different line sizes.
 */
 
-static	void	map_len(t_map *map)
+static	void	count_map_len(t_map *map)
 {
 	static int	i = -1;
 	static int	row_size = 0;	

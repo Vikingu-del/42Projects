@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:11:34 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 01:39:36 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 23:32:14 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 *	All the colors are defined in fdf.h 
 */
 
-void	load_color(int max, int min, t_point *point, t_palette	palette)
+void	load_color(int max, int min, t_point *point, t_palette colors)
 {
 	point->color = DEFAULT_COLOR;
 	if (point->hex_color > 0)
@@ -30,16 +30,16 @@ void	load_color(int max, int min, t_point *point, t_palette	palette)
 		return ;
 	}
 	if (point->coordinates[Z] == max)
-		point->color = palette.topcolor;
+		point->color = colors.topcolor;
 	else if (point->coordinates[Z] == 0)
-		point->color = palette.groundcolor;
+		point->color = colors.groundcolor;
 	else if (point->coordinates[Z] == min && min != 0)
-		point->color = palette.bottomcolor;
+		point->color = colors.bottomcolor;
 	else if (point->coordinates[Z] > 0)
-		point->color = gradient(palette.groundcolor, palette.topcolor, \
+		point->color = gradient(colors.groundcolor, colors.topcolor, \
 		max, point->coordinates[Z]);
 	else
-		point->color = gradient(palette.bottomcolor, palette.groundcolor, \
+		point->color = gradient(colors.bottomcolor, colors.groundcolor, \
 		-min, - (min - point->coordinates[Z]));
 	point->paint = 1;
 }
@@ -81,11 +81,11 @@ int	point_is_valid(char *str_point)
 
 static void	init_map_colors(t_map *map)
 {
-	map->palette.backcolor = BACK_COLOR;
-	map->palette.menucolor = MENU_COLOR;
-	map->palette.bottomcolor = BOTTOM_COLOR;
-	map->palette.groundcolor = GROUND_COLOR;
-	map->palette.topcolor = TOP_COLOR;
+	map->colors.backcolor = BACK_COLOR;
+	map->colors.menucolor = MENU_COLOR;
+	map->colors.bottomcolor = BOTTOM_COLOR;
+	map->colors.groundcolor = GROUND_COLOR;
+	map->colors.topcolor = TOP_COLOR;
 }
 
 void	init_map(t_map *map, int clean_state)

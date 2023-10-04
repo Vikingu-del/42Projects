@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:12:01 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:12:03 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 23:38:29 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static void	draw_info(t_data *data)
 	print_nbr(data, MENU_TAB + 110, line, data->map.z_scale);
 	line += LINE_SIZE;
 	print_str(data, MENU_TAB, line, "Blending:");
-	print_nbr(data, MENU_TAB + 100, line, data->map.brange * 10000);
+	print_nbr(data, MENU_TAB + 100, line, data->map.curve_range * 10000);
 }
 
 void	draw_menu(t_data *data)

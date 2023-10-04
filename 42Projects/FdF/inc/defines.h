@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:39:54 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:03:44 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 23:42:34 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define TOP_COLOR			DARK_RED
 # define GROUND_COLOR		YELLOW
 # define BACK_COLOR			BLACK
-# define MENU_COLOR			GRAY
+# define MENU_COLOR			0x202020
 # define TEXT_COLOR			0xEAEAEA	
 # define NUMBER_COLOR		YELLOW
 

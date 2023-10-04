@@ -6,23 +6,23 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:12:49 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 02:19:24 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 23:34:03 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/defines.h"
 /* 
-*	This function copy len points of the array from src to dst
+*	This function copy len points of the array from src to projection
 */
 
-void	copy_map_points(t_point *map_points, t_point *projection, int map_size)
+void	copy_map_points(t_point *map_points, t_point *projection, int len)
 {
 	int	i;
 
 	i = 0;
 	while (i < len)
 	{
-		dst[i] = src[i];
+		projection[i] = map_points[i];
 		i++;
 	}
 }

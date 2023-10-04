@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_draw.c                                         :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 01:36:47 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 23:14:55 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ static void	go_fit(t_data *data, t_point *proyect)
 	data->map.source.coordinates[Y] = WINY / 2;
 	data->map.source.coordinates[Z] = 0;
 	data->map.scale = 1;
-	copy_map(data->map.points, proyect, data->map.len);
+	copy_map_points(data->map.points, proyect, data->map.len);
 	parse_map(data, proyect);
 	while (!(limits(proyect, data->map.len)))
 	{
-		copy_map(data->map.points, proyect, data->map.len);
+		copy_map_points(data->map.points, proyect, data->map.len);
 		parse_map(data, proyect);
 		data->map.scale = data->map.scale + 0.2;
 	}
@@ -114,13 +114,13 @@ int draw_map(t_data *data, int should_fit_window)
     if (projected_points == NULL)
         exit_with_error(ERR_MEM);
     data->map.renders++;
-    generate_background(data, data->map.palette.backcolor, \
-        data->map.palette.menucolor);
+    generate_background(data, data->map.colors.backcolor, \
+        data->map.colors.menucolor);
     copy_map_points(data->map.points, projected_points, data->map.len);
     parse_map(data, projected_points);
     draw_map_points(data, projected_points, should_fit_window);
     mlx_put_image_to_window(data->vars.mlx, data->vars.win, \
-        data->bitmap.img, 0, 0);
+        data->picture.img, 0, 0);
     draw_menu(data);
     free(projected_points);
     clock_t end_time = clock();

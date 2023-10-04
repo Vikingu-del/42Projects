@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:07:24 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 01:39:16 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:50:02 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,28 @@ void	exit_with_error(char *s)
 
 void	control_colorscheme(int key, t_map *map)
 {
-	map->palette.backcolor = CARBON;
-	map->palette.bottomcolor = AZUL;
-	map->palette.topcolor = BRICK_RED;
-	map->palette.groundcolor = SAFFRON;
+	map->colors.backcolor = BLACK;
+	map->colors.bottomcolor = BLUE;
+	map->colors.topcolor = DARK_RED;
+	map->colors.groundcolor = YELLOW;
 	if (key == KEY_2)
 	{
-		map->palette.backcolor = WHITE;
-		map->palette.bottomcolor = CARBON;
-		map->palette.topcolor = CARBON;
-		map->palette.groundcolor = CARBON;
+		map->colors.backcolor = GRAY;
+		map->colors.bottomcolor = BLACK;
+		map->colors.topcolor = BLACK;
+		map->colors.groundcolor = BLACK;
 	}
 	if (key == KEY_3)
 	{
-		map->palette.bottomcolor = WHITE;
-		map->palette.topcolor = WHITE;
-		map->palette.groundcolor = WHITE;
+		map->colors.bottomcolor = GRAY;
+		map->colors.topcolor = GRAY;
+		map->colors.groundcolor = GRAY;
 	}
 	if (key == KEY_4)
 	{
-		map->palette.bottomcolor = SUPERAZUL;
-		map->palette.topcolor = ROJO;
-		map->palette.groundcolor = VERDE;
+		map->colors.bottomcolor = LIGHT_BLUE;
+		map->colors.topcolor = RED;
+		map->colors.groundcolor = GREEN;
 	}
 	apply_color_scheme(map);
 }

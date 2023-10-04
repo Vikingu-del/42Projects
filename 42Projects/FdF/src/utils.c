@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:12:27 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 01:46:01 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:53:37 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../lib/ft_printf/include/ft_printf.h"
 #include "../lib/libft/include/libft.h"
 #include "../inc/defines.h"
+
 
 void	print_nbr(t_data *data, int x, int y, int nbr)
 {

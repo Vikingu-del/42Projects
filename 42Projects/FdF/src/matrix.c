@@ -6,12 +6,13 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:11:46 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 03:31:54 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:53:42 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/defines.h"
 #include "../inc/utils.h"
+#include "../inc/matrix.h"
 #include <math.h>
 
 // multiply the rotation matrix by the point to rotate it
@@ -34,7 +35,7 @@ t_point	point_mult_matrix(float matrix[3][3], t_point point)
     			matrix[row_index][col_index] * point.coordinates[col_index];
 			col_index++;
 		}
-		row++;
+		row_index++;
 	}
 	return (transformed_point);
 }

@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:06:48 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:06:55 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:42:46 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int	mouse_move(int x, int y, void *param)
 {
-	t_meta	*data;
+	t_data	*data;
 
 	data = (t_data *)param;
 	if (x > WINX || x < 0 || y > WINY || y < 0)
@@ -52,15 +52,15 @@ int	mouse_move(int x, int y, void *param)
 
 int	mouse_release(int button, int x, int y, void *param)
 {
-	t_meta	*meta;
+	t_data	*data;
 
 	(void)x;
 	(void)y;
-	meta = (t_meta *)param;
+	data = (t_data *)param;
 	if (button == 1)
-		meta->keys.b_mouse_l = 0;
+		data->keys.b_mouse_l = 0;
 	if (button == 2)
-		meta->keys.b_mouse_r = 0;
+		data->keys.b_mouse_r = 0;
 	return (0);
 }
 
@@ -70,28 +70,28 @@ int	mouse_release(int button, int x, int y, void *param)
 
 int	mouse_press(int button, int x, int y, void *param)
 {
-	t_meta	*meta;
+	t_data	*data;
 
-	meta = (t_meta *)param;
+	data = (t_data *)param;
 	if (button == 1)
 	{
-		meta->keys.b_mouse_l = 1;
-		meta->keys.last_click_l.coordinates[X] = x;
-		meta->keys.last_click_l.coordinates[Y] = y;
+		data->keys.b_mouse_l = 1;
+		data->keys.last_click_l.coordinates[X] = x;
+		data->keys.last_click_l.coordinates[Y] = y;
 	}
 	if (button == 2)
 	{
-		meta->keys.b_mouse_r = 1;
-		meta->keys.last_click_r.coordinates[X] = x;
-		meta->keys.last_click_r.coordinates[Y] = y;
+		data->keys.b_mouse_r = 1;
+		data->keys.last_click_r.coordinates[X] = x;
+		data->keys.last_click_r.coordinates[Y] = y;
 	}	
 	if (button == 5)
 	{
-		if (meta->map.scale > 2)
-			meta->map.scale = meta->map.scale / 1.5;
+		if (data->map.scale > 2)
+			data->map.scale = data->map.scale / 1.5;
 	}
 	if (button == 4)
-		meta->map.scale = meta->map.scale * 1.5;
-	draw_map(meta, FREE);
+		data->map.scale = data->map.scale * 1.5;
+	draw_map(data, FREE);
 	return (0);
 }

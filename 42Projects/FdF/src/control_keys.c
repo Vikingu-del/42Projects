@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:55:55 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/27 03:46:32 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:43:14 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ void	control_keys1(int key, t_data *data)
 	if (key == KEY_R)
 	{
 		init_map(&data->map, 0);
-		data->map.proportion = \
+		data->map.scale = \
 		data->map.limits.coordinates[Z] / data->map.limits.coordinates[X];
-		if (data->map.proportion > 0.5)
-			data->map.z_scale = data->map.proportion * 30;
+		if (data->map.scale > 0.5)
+			data->map.z_scale = data->map.scale * 30;
 		apply_color_scheme(&data->map);
 		draw_map(data, FIT);
 	}	
