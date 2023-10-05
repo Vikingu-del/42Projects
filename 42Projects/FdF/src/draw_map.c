@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/05 12:57:54 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 14:13:07 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	within_boundaries(t_point *points, int len)
 *	to fit the screen.
 */
 
-static void	go_fit(t_data *data, t_point *projection)
+static void	fiting(t_data *data, t_point *projection)
 {
 	data->map.source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH + 35;
 	data->map.source.coordinates[Y] = WINY / 2;
@@ -91,11 +91,11 @@ void	draw_map_points(t_data *data, t_point *projection, int fit)
 	if (data->map.stars)
 		generate_stars(data);
 	if (fit)
-		go_fit(data, projection);
+		fiting(data, projection);
 	if (data->map.wires)
 		wiring(data, projection);
-	if (data->map.b_dots)
-		doted(data, projection);
+	if (data->map.dots)
+		doting(data, projection);
 }
 
 /* 

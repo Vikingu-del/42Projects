@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:11:10 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/05 13:09:15 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 14:18:25 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,15 @@ void	apply_color_scheme(t_map *map)
 *	This function iterate all the points of the array and draw a dot for each point
 */
 
-void	doted(t_data *data, t_point *proyect)
+void	doting(t_data *data, t_point *projection)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->map.len)
 	{
-		if (proyect[i].paint)
-			draw_dot(data, proyect[i], 1);
+		if (projection[i].paint)
+			draw_dot(data, projection[i], 1);
 		i++;
 	}
 }

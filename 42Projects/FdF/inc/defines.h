@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:39:54 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/05 12:50:11 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 14:48:07 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define FREE				0
 
 // A structure to manipulate the points.
-typedef struct s_point {
+typedef struct	s_point {
 	float	coordinates[3]; // coordinatess of the point
 	int		color; // color of the point
 	int		hex_color; // hexadecimal color of the point
@@ -111,8 +111,8 @@ typedef struct m_map {
 	float			curve_range; // curving range of the map
 	int				renders; // number of times the map has been rendered
 	bool			wires; // boolean to draw lines
-	bool			b_dots; // boolean to draw dots
-	bool			b_pluslines; // boolean to draw plus lines
+	bool			dots; // boolean to draw dots
+	bool			pluslines; // boolean to draw plus lines
 	bool			sphere; // boolean to spherize the map
 	bool			stars; // boolean to draw stars
 	bool			shadows; // boolean to draw shadows

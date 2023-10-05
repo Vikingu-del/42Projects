@@ -38,7 +38,7 @@ int	main(int argv, char **argc)
 	mlx_hook(data.vars.win, 4, 0, mouse_press, &data);
 	mlx_hook(data.vars.win, 5, 0, mouse_release, &data);
 	mlx_hook(data.vars.win, 6, 0, mouse_move, &data);
-	mlx_hook(data.vars.win, 17, 0, terminate_program, &data);
+	mlx_hook(data.vars.win, 17, 0, close_program, &data);
 	mlx_loop(data.vars.mlx);
 	free (data.map.points);
 	free (data.map.content);

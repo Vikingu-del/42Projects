@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:55:55 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/05 12:51:05 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 14:38:53 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 *	This function handle some key press events
 */
 
-void	control_keys3(int key, t_data *data)
+void	control_b_sum_res_i(int key, t_data *data)
 {
 	if (key == KEY_B)
 	{
@@ -55,14 +55,14 @@ void	control_keys3(int key, t_data *data)
 *	This function handle some key press events
 */
 
-void	control_keys2(int key, t_data *data)
+void	control_d_l_x_g_s_h_f_cmd(int key, t_data *data)
 {
 	if (key == KEY_D)
-		data->map.b_dots = !data->map.b_dots;
+		data->map.dots = !data->map.dots;
 	if (key == KEY_L)
 		data->map.wires = !data->map.wires;
 	if (key == KEY_X)
-		data->map.b_pluslines = !data->map.b_pluslines;
+		data->map.pluslines = !data->map.pluslines;
 	if (key == KEY_G)
 		data->map.sphere = !data->map.sphere;
 	if (key == KEY_S)
@@ -79,10 +79,10 @@ void	control_keys2(int key, t_data *data)
 *	This function handle some key press events
 */
 
-void	control_keys1(int key, t_data *data)
+void	control_esc_r_c_p(int key, t_data *data)
 {
 	if (key == KEY_ESC)
-		terminate_program(data);
+		close_program(data);
 	if (key == KEY_R)
 	{
 		init_map(&data->map, 0);
@@ -114,10 +114,10 @@ int	key_press(int key, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	angle_control(key, data);
-	control_keys1(key, data);
-	control_keys2(key, data);
-	control_keys3(key, data);
+	control_angle(key, data);
+	control_esc_r_c_p(key, data);
+	control_d_l_x_g_s_h_f_cmd(key, data);
+	control_b_sum_res_i(key, data);
 	if (key >= KEY_1 && key <= KEY_4)
 		control_colorscheme(key, &data->map);
 	draw_map(data, FREE);

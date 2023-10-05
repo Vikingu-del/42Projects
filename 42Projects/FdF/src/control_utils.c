@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:07:24 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 22:50:02 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 14:38:24 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	angle(float *ang, float value)
 *	This function add grades to the control structure depends the key pressed
 */
 
-void	angle_control(int key, t_data *data)
+void	control_angle(int key, t_data *data)
 {
 	int	ang;
 
@@ -43,24 +43,24 @@ void	angle_control(int key, t_data *data)
 	if (data->keys.b_keyctrl)
 		ang = 90;
 	if (key == KEY_DOWN)
-		angle(&data->map.ang[X], ang);
-	if (key == KEY_UP)
 		angle(&data->map.ang[X], -ang);
+	if (key == KEY_UP)
+		angle(&data->map.ang[X], ang);
 	if (key == KEY_LEFT)
-		angle(&data->map.ang[Y], ang);
-	if (key == KEY_RIGHT)
 		angle(&data->map.ang[Y], -ang);
+	if (key == KEY_RIGHT)
+		angle(&data->map.ang[Y], ang);
 	if (key == KEY_Q)
-		angle(&data->map.ang[Z], ang);
-	if (key == KEY_W)
 		angle(&data->map.ang[Z], -ang);
+	if (key == KEY_W)
+		angle(&data->map.ang[Z], ang);
 }
 
 /* 
 *	This function handle the program shut down
 */
 
-int	terminate_program(void *param)
+int	close_program(void *param)
 {
 	t_data	*data;
 

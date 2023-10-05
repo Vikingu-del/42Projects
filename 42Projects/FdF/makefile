@@ -60,14 +60,14 @@ makelibs:
 -include 	${DEPS}
 $(NAME):	$(OBJ)		
 			@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(PRINTF) $(LIBFT) $(MLXCC) $(OPENGL) -o $(NAME)		
-			@echo "👉 $(BLUE)$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(PRINTF) $(MLXCC) $(OPENGL) -o $(NAME)$(DEF_COLOR)"
-			@echo "$(GREEN)✨ FDF compiled!$(DEF_COLOR)"
+			@echo "👉 $(MAGENTA)$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(PRINTF) $(MLXCC) $(OPENGL) -o $(NAME)$(DEF_COLOR)"
+			@echo "$(GREEN)🐣 FDF compiled!$(DEF_COLOR)"
 
 bonus:		
 			@$(MAKE) all
 			
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) | $(OBJF)
-			@echo "🍩 $(YELLOW)Compiling: $< $(DEF_COLOR)"
+			@echo "🍳 $(CYAN)Compiling: $< $(DEF_COLOR)"
 			$(CC) $(CFLAGS) -MMD -c $< -o $@
 
 $(OBJF):
