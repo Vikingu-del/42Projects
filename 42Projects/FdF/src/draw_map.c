@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/05 01:03:03 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:57:54 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	parse_map(t_data *data, t_point *projections)
 *	This function checks if any point is out of the limits of the screen
 */
 
-static int	limits(t_point *points, int len)
+static int	within_boundaries(t_point *points, int len)
 {
 	int	i;
 
@@ -56,13 +56,13 @@ static int	limits(t_point *points, int len)
 	{
 		if (points[i].coordinates[X] < (MENU_WIDTH + FIT_MARGIN) || \
 			points[i].coordinates[X] > (WINX - FIT_MARGIN))
-			return (1);
+			return (0);
 		if (points[i].coordinates[Y] < FIT_MARGIN || \
 			points[i].coordinates[Y] > (WINY - FIT_MARGIN))
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 /* 
@@ -70,36 +70,36 @@ static int	limits(t_point *points, int len)
 *	to fit the screen.
 */
 
-static void	go_fit(t_data *data, t_point *proyect)
+static void	go_fit(t_data *data, t_point *projection)
 {
-	data->map.source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
+	data->map.source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH + 35;
 	data->map.source.coordinates[Y] = WINY / 2;
 	data->map.source.coordinates[Z] = 0;
 	data->map.scale = 1;
-	copy_map_points(data->map.points, proyect, data->map.len);
-	parse_map(data, proyect);
-	while (!(limits(proyect, data->map.len)))
+	copy_map_points(data->map.points, projection, data->map.len);
+	parse_map(data, projection);
+	while ((within_boundaries(projection, data->map.len)))
 	{
-		copy_map_points(data->map.points, proyect, data->map.len);
-		parse_map(data, proyect);
+		copy_map_points(data->map.points, projection, data->map.len);
+		parse_map(data, projection);
 		data->map.scale = data->map.scale + 0.2;
 	}
 }
 
-void	draw_map_points(t_data *data, t_point *proyect, int fit)
+void	draw_map_points(t_data *data, t_point *projection, int fit)
 {
-	if (data->map.b_stars)
+	if (data->map.stars)
 		generate_stars(data);
 	if (fit)
-		go_fit(data, proyect);
-	if (data->map.b_lines)
-		wired(data, proyect);
+		go_fit(data, projection);
+	if (data->map.wires)
+		wiring(data, projection);
 	if (data->map.b_dots)
-		doted(data, proyect);
+		doted(data, projection);
 }
 
 /* 
-*	This function draw the proyection of map->points acording all
+*	This function draw the projection of map->points acording all
 *	the modifiers (x,y,z, scale..). If fit = 1, will caculate the 
 *	scale needed to fit the screen.
 */

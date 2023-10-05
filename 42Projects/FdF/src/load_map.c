@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:56 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 23:20:49 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 13:42:48 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,27 @@ static	char	*read_map(int fd);
 
 void	load_map(t_map *map, char *file)
 {
-	int	fd;
+    int	fd;
+    char	*suffix;
 
-	init_map(map, 1);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		exit_with_error(ERR_OPEN);
-	map->content = read_map(fd);
-	close (fd);
-	count_map_len(map);
-	parse_points(map);
-	apply_color_scheme(map);
-	cart_to_pol(map);
-	ft_printf("\nOpening Window\n");
+    init_map(map, 1);
+    suffix = ft_substr(file, ft_strlen(file) - 4, 4);
+    if (ft_strcmp(suffix, ".fdf") != 0)
+    {
+        free(suffix);
+        exit_with_error(ERR_OPEN);
+    }
+    free(suffix);
+    fd = open(file, O_RDONLY);
+    if (fd < 0)
+        exit_with_error(ERR_OPEN);
+    map->content = read_map(fd);
+    close(fd);
+    count_map_len(map);
+    parse_points(map);
+    apply_color_scheme(map);
+    cart_to_pol(map);
+    ft_printf("\nOpening Window\n");
 }
 
 static char	*read_map(int fd)
@@ -99,7 +107,7 @@ static int	load_points(char *line, t_map *map, int numline)
 	{
 		if (!point_is_valid(&point_elements[i][0]))
 			exit_with_error(ERR_EMPTY);
-		map->points[i_point].coordinates[Z] = ft_atoi(&point_elements[i][0]);
+		map->points[i_point].coordinates[Z] = modified_atoi(&point_elements[i][0]);
 		map->points[i_point].coordinates[X] = i - map->limits.coordinates[X] / 2;
 		map->points[i_point].coordinates[Y] = numline - map->limits.coordinates[Y] / 2;
 		map->points[i_point].paint = 1;
@@ -176,5 +184,5 @@ static	void	parse_points(t_map *map)
 		}
 	}
 	free (line);
-	ft_printf("\r 👍 %d points readed\n", num_points);
+	ft_printf("\r 👍 %d points readed    \n", num_points);
 }

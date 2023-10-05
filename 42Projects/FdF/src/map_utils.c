@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:11:10 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 23:21:59 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 13:09:15 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	wire_line(t_point *point, t_data *data, int density, int line);
 *	--> wire[i] and wire [i + x_max * density]
 */
 
-void	wired(t_data *data, t_point *wire)
+void	wiring(t_data *data, t_point *wire)
 {
 	int	i;
 	int	density;

@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:07:49 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 23:15:39 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:51:20 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	generate_stars(t_data *data)
 		star.color = GRAY;
 		if ((star.coordinates[X] < lim_x[0] || star.coordinates[X] > lim_x[1]) \
 		|| ((star.coordinates[Y]) < lim_y[0] || star.coordinates[Y] > lim_y[1]))
-			draw_dot(data, star, 2);
+			draw_dot(data, star, 1);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:11:34 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 23:32:14 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:51:25 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ void	init_map(t_map *map, int clean_state)
 	map->z_scale = 1;
 	map->scale = 1;
 	map->curve_range = 0;
-	map->b_lines = 1;
+	map->wires = 1;
 	map->b_dots = 0;
 	map->b_pluslines = 0;
 	map->sphere = 0;
-	map->b_stars = 0;
+	map->stars = 0;
 	map->shadows = 1;
 	map->source.coordinates[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
 	map->source.coordinates[Y] = WINY / 2;

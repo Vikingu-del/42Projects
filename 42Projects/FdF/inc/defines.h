@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:39:54 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 23:42:34 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:50:11 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define TEXT_COLOR			0xEAEAEA	
 # define NUMBER_COLOR		YELLOW
 
-# define MENU_WIDTH			350
+# define MENU_WIDTH			370
 # define FIT_MARGIN			50
 
 # define FIT				1
@@ -110,11 +110,11 @@ typedef struct m_map {
 	int				len; // size of the map
 	float			curve_range; // curving range of the map
 	int				renders; // number of times the map has been rendered
-	bool			b_lines; // boolean to draw lines
+	bool			wires; // boolean to draw lines
 	bool			b_dots; // boolean to draw dots
 	bool			b_pluslines; // boolean to draw plus lines
 	bool			sphere; // boolean to spherize the map
-	bool			b_stars; // boolean to draw stars
+	bool			stars; // boolean to draw stars
 	bool			shadows; // boolean to draw shadows
 	double			performance; // performance of the map
 	float			ratio; // ratio of the map zmax / number of points

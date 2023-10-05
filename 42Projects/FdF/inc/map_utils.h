@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 20:05:13 by eseferi           #+#    #+#             */
-/*   Updated: 2023/09/26 23:05:05 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:53:03 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MAP_UTILS_H
 
 void	apply_color_scheme(t_map *map);
-void	wired(t_data *data, t_point *wire);
+void	wiring(t_data *data, t_point *wire);
 void	doted(t_data *data, t_point *proyect);
 void	z_scaling(t_point *proyect, float divisor, int len);
 void	init_map(t_map *map, int clean_state);

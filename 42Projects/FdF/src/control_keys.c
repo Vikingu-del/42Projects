@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:55:55 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/04 22:43:14 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:51:05 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	control_keys2(int key, t_data *data)
 	if (key == KEY_D)
 		data->map.b_dots = !data->map.b_dots;
 	if (key == KEY_L)
-		data->map.b_lines = !data->map.b_lines;
+		data->map.wires = !data->map.wires;
 	if (key == KEY_X)
 		data->map.b_pluslines = !data->map.b_pluslines;
 	if (key == KEY_G)
 		data->map.sphere = !data->map.sphere;
 	if (key == KEY_S)
-		data->map.b_stars = !data->map.b_stars;
+		data->map.stars = !data->map.stars;
 	if (key == KEY_H)
 		data->map.shadows = !data->map.shadows;
 	if (key == KEY_F)
