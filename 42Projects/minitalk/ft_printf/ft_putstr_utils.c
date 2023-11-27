@@ -6,7 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:11:41 by eseferi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/11 00:14:17 by eseferi          ###   ########.fr       */
+=======
+/*   Updated: 2023/06/15 16:06:36 by eseferi          ###   ########.fr       */
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +21,22 @@
  * Return the chars written
 */
 static int	ft_putstr(char *str, int bytes)
+<<<<<<< HEAD
 {
+=======
+{	
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 	if (!*str || !bytes)
 		return (0);
 	else
 	{
 		write(1, str, 1);
 		return (ft_putstr(++str, --bytes) + 1);
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 }
 
 static int	ft_str_justify(char *str, int chars_to_write, t_flags *flags)

@@ -6,7 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:09:20 by eseferi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/11 00:13:50 by eseferi          ###   ########.fr       */
+=======
+/*   Updated: 2023/06/20 00:25:40 by eseferi          ###   ########.fr       */
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +58,12 @@ static int	ft_hex_leftjustified(unsigned long hex_value, t_flags *flags)
 			count += ft_pad_char('0', flags->precision_value - len, 0);
 			count += ft_puthex(hex_value, flags);
 			if (flags->precision_value > len)
+<<<<<<< HEAD
 				count += ft_pad_char(' ', flags->width - \
 			flags->precision_value, 0);
+=======
+		count += ft_pad_char(' ', flags->width - flags->precision_value, 0);
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 			else
 				count += ft_pad_char(' ', flags->width - len, 0);
 		}

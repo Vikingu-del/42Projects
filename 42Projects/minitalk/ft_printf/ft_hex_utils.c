@@ -6,7 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:13:05 by eseferi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/11 00:11:05 by eseferi          ###   ########.fr       */
+=======
+/*   Updated: 2023/06/19 22:22:09 by eseferi          ###   ########.fr       */
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +53,11 @@ int	ft_puthex(unsigned long hex_value, t_flags *flags)
 			count += ft_putchar(symbols[hex_value] + 32);
 	}
 	else
+<<<<<<< HEAD
 	{
+=======
+	{	
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 		count += ft_puthex(hex_value / 16, flags);
 		count += ft_puthex(hex_value % 16, flags);
 	}

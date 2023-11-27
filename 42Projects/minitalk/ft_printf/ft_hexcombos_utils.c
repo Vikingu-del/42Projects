@@ -6,7 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 23:44:31 by eseferi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/11 00:12:17 by eseferi          ###   ########.fr       */
+=======
+/*   Updated: 2023/06/20 00:26:06 by eseferi          ###   ########.fr       */
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +27,11 @@ int	ft_rhex_fcom(unsigned long hex, t_flags *flags, int len, int count)
 		}
 		else
 			count += ft_pad_char('0', flags->width - len, 0);
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 	else
 	{
 		if (flags->hash && hex != 0)
@@ -46,8 +54,12 @@ int	ft_rhex_scom(unsigned long hex, t_flags *flags, int len, int count)
 		if (hex != 0)
 		{
 			if (flags->precision_value > len)
+<<<<<<< HEAD
 				count += ft_pad_char(' ', flags->width - \
 				flags->precision_value - 2, 0);
+=======
+		count += ft_pad_char(' ', flags->width - flags->precision_value - 2, 0);
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 			else
 				count += ft_pad_char(' ', flags->width - len - 2, 0);
 			if (flags->is_upper)

@@ -6,7 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:08:39 by eseferi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/06/07 17:13:39 by eseferi          ###   ########.fr       */
+=======
+/*   Updated: 2023/10/10 09:00:36 by eseferi          ###   ########.fr       */
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +55,12 @@ static int	ft_char_justify(char c, t_flags *flags)
 
 int	ft_putchar_format(char c, t_flags *flags)
 {
+<<<<<<< HEAD
 	int	count;
 
 	count = 0;
+=======
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 	if (flags->width > 1)
 		return (ft_char_justify(c, flags));
 	return (ft_putchar(c));

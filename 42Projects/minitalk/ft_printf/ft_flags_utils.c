@@ -6,7 +6,11 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:01:36 by eseferi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/13 13:10:32 by eseferi          ###   ########.fr       */
+=======
+/*   Updated: 2023/06/13 22:17:35 by eseferi          ###   ########.fr       */
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +33,12 @@ void	ft_refresh_flags(t_flags *flags)
 	flags->hash = 0;
 }
 
+<<<<<<< HEAD
+=======
+/*
+ * the % char is considered like a specifier
+*/
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 static int	ft_is_specifier(char c)
 {
 	if (c == 'c' || c == 's' || c == 'd' || c == 'i'
@@ -38,6 +48,18 @@ static int	ft_is_specifier(char c)
 	return (0);
 }
 
+<<<<<<< HEAD
+=======
+/*
+ * a number in a flag has a different meaning 
+ * depending by the position
+ *
+ *		 %[0_pad][width].[precision]
+ * 
+ * i handle 0 and other numbers separately
+ *
+*/
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 static void	ft_handle_digits(char c, t_flags *flags)
 {
 	if ('0' == c && !(flags->width) && !(flags->precision_point))

@@ -6,14 +6,22 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:55:26 by eseferi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/11 00:12:45 by eseferi          ###   ########.fr       */
+=======
+/*   Updated: 2023/06/14 20:31:51 by eseferi          ###   ########.fr       */
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static int	ft_print_format(va_list ap, t_flags *flags, char specifier)
+<<<<<<< HEAD
 {
+=======
+{	
+>>>>>>> d1aa95c9132cd0a4997d0e4fae446bae872b58e2
 	int	count;
 
 	count = 0;
