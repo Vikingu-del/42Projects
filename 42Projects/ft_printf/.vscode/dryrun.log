@@ -1,0 +1,23 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/eseferi/42/42_git/42Projects/ft_printf'
+gcc -Wall -Wextra -Werror -g -O3 -c ft_printf.c -I. 
+ 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_putchar_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_putstr_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_flags_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_format_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_hex_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_puthex_utils.c -I. 
+ 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_putnbr_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_putptr_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_long_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_percent_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_right_combination_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_left_combination_utils.c -I. 
+gcc -Wall -Wextra -Werror -g -O3 -c ft_hexcombos_utils.c -I. 
+cd ./libft && make 
+cp ./libft/libft.a libftprintf.a 
+ar -rcs libftprintf.a ft_printf.o ft_putchar_utils.o ft_putstr_utils.o ft_flags_utils.o ft_format_utils.o ft_hex_utils.o ft_puthex_utils.o ft_putnbr_utils.o ft_putptr_utils.o ft_long_utils.o ft_percent_utils.o ft_right_combination_utils.o ft_left_combination_utils.o ft_hexcombos_utils.o
+make: Leaving directory `/Users/eseferi/42/42_git/42Projects/ft_printf'
+ 

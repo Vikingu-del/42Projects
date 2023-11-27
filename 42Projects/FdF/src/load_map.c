@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 23:10:56 by eseferi           #+#    #+#             */
-/*   Updated: 2023/10/05 13:42:48 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/10/05 15:36:06 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,27 @@ static	char	*read_map(int fd);
 
 void	load_map(t_map *map, char *file)
 {
-    int	fd;
-    char	*suffix;
+	int		fd;
+	char	*suffix;
 
-    init_map(map, 1);
-    suffix = ft_substr(file, ft_strlen(file) - 4, 4);
-    if (ft_strcmp(suffix, ".fdf") != 0)
-    {
-        free(suffix);
-        exit_with_error(ERR_OPEN);
-    }
-    free(suffix);
-    fd = open(file, O_RDONLY);
-    if (fd < 0)
-        exit_with_error(ERR_OPEN);
-    map->content = read_map(fd);
-    close(fd);
-    count_map_len(map);
-    parse_points(map);
-    apply_color_scheme(map);
-    cart_to_pol(map);
-    ft_printf("\nOpening Window\n");
+	init_map(map, 1);
+	suffix = ft_substr(file, ft_strlen(file) - 4, 4);
+	if (ft_strcmp(suffix, ".fdf") != 0)
+	{
+		free(suffix);
+		exit_with_error(ERR_OPEN);
+	}
+	free(suffix);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		exit_with_error(ERR_OPEN);
+	map->content = read_map(fd);
+	close(fd);
+	count_map_len(map);
+	parse_points(map);
+	apply_color_scheme(map);
+	cart_to_pol(map);
+	ft_printf("\nOpening Window\n");
 }
 
 static char	*read_map(int fd)
@@ -107,16 +107,16 @@ static int	load_points(char *line, t_map *map, int numline)
 	{
 		if (!point_is_valid(&point_elements[i][0]))
 			exit_with_error(ERR_EMPTY);
-		map->points[i_point].coordinates[Z] = modified_atoi(&point_elements[i][0]);
-		map->points[i_point].coordinates[X] = i - map->limits.coordinates[X] / 2;
-		map->points[i_point].coordinates[Y] = numline - map->limits.coordinates[Y] / 2;
+		map->points[i_point].coords[Z] = modified_atoi(&point_elements[i][0]);
+		map->points[i_point].coords[X] = i - map->limits.coords[X] / 2;
+		map->points[i_point].coords[Y] = numline - map->limits.coords[Y] / 2;
 		map->points[i_point].paint = 1;
 		map->points[i_point].color = DEFAULT_COLOR;
 		map->points[i_point].hex_color = has_hexcolors (point_elements[i]);
-		if (map->limits.coordinates[Z] < map->points[i_point].coordinates[Z])
-			map->limits.coordinates[Z] = map->points[i_point].coordinates[Z];
-		if (map->zmin > map->points[i_point].coordinates[Z])
-			map->zmin = map->points[i_point].coordinates[Z];
+		if (map->limits.coords[Z] < map->points[i_point].coords[Z])
+			map->limits.coords[Z] = map->points[i_point].coords[Z];
+		if (map->zmin > map->points[i_point].coords[Z])
+			map->zmin = map->points[i_point].coords[Z];
 		i++;
 		i_point++;
 	}
@@ -144,18 +144,18 @@ static	void	count_map_len(t_map *map)
 				row_size++;
 		if (map->content[i] == '\n')
 		{
-			map->limits.coordinates[Y]++;
-			if (map->limits.coordinates[X] != 0 && (map->limits.coordinates[X] != row_size))
+			map->limits.coords[Y]++;
+			if (map->limits.coords[X] != 0 && (map->limits.coords[X] != row_size))
 				exit_with_error(ERR_LINE);
 			else
-				map->limits.coordinates[X] = row_size;
+				map->limits.coords[X] = row_size;
 			row_size = 0;
 		}
 	}
-	if (row_size > 0 && (map->limits.coordinates[X] != row_size))
+	if (row_size > 0 && (map->limits.coords[X] != row_size))
 		exit_with_error(ERR_LINE);
-	map->limits.coordinates[Y]++;
-	map->len = map->limits.coordinates[X] * map->limits.coordinates[Y];
+	map->limits.coords[Y]++;
+	map->len = map->limits.coords[X] * map->limits.coords[Y];
 }
 
 static	void	parse_points(t_map *map)
@@ -184,5 +184,5 @@ static	void	parse_points(t_map *map)
 		}
 	}
 	free (line);
-	ft_printf("\r 👍 %d points readed    \n", num_points);
+	ft_printf("\r 👍 %d points readed	\n", num_points);
 }
