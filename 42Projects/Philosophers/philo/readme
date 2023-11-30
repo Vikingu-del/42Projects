@@ -1,0 +1,66 @@
+
+1. Understanding the Problem:
+
+Philosophers sitting at a round table.
+Alternating between eating, thinking, and sleeping.
+Philosophers need two forks to eat.
+Simulation stops when a philosopher dies of starvation.
+Rules:
+
+No global variables.
+Command-line arguments: number_of_philosophers, time_to_die, time_to_eat, time_to_sleep, [number_of_times_each_philosopher_must_eat].
+
+
+
+2. Global rules:
+Program Structure:
+
+Write two programs: one for the mandatory part and one for the bonus part (if chosen).
+Command-line arguments handling.
+Argument Parsing:
+
+Parse and store values for number_of_philosophers, time_to_die, time_to_eat, time_to_sleep, [number_of_times_each_philosopher_must_eat].
+
+
+
+3. Mandatory part:
+File Structure:
+
+Create a directory named philo with necessary files (*.h, *.c, Makefile).
+Makefile:
+
+Define rules: NAME, all, clean, fclean, re.
+Philosopher Threads:
+
+Implement each philosopher as a thread.
+Ensure there is one fork between each pair of philosophers.
+Mutex for Forks:
+
+Protect the state of forks using a mutex for each fork.
+Avoid duplication of forks by synchronizing access.
+State Changes:
+
+Implement state changes for each philosopher using timestamps.
+Use pthread_mutex_lock and pthread_mutex_unlock for synchronization.
+Logging:
+
+Format and display state changes for each philosopher.
+Display death messages within 10 ms after actual death.
+Avoiding Data Races:
+
+Ensure proper use of mutexes to prevent data races.
+Testing:
+
+Test your program with different inputs to ensure correctness.
+Check for synchronization issues and avoid deadlocks.
+Additional Tips:
+Modular Code:
+Divide your code into functions for better readability and maintainability.
+Useful Functions:
+Utilize functions like memset, printf, malloc, free, write, usleep, gettimeofday, and pthread functions as specified.
+Make sure to thoroughly test your program to ensure that it handles different scenarios correctly and avoids any issues like deadlocks or data races. Good luck with your assignment!
+
+
+
+
+
