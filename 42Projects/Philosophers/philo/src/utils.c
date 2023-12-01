@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:25:17 by eseferi           #+#    #+#             */
-/*   Updated: 2023/11/30 12:43:59 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/01 13:46:51 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,15 @@ void	ft_putendl_fd(char *s, int fd)
 		return ;
 	write(fd, s, ft_strlen(s));
 	write(fd, "\n", 1);
+}
+
+int	ft_is_all_digits(char *str)
+{
+	while(*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
 }

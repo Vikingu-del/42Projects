@@ -6,7 +6,7 @@
 #    By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 12:33:07 by eseferi           #+#    #+#              #
-#    Updated: 2023/11/30 12:48:15 by eseferi          ###   ########.fr        #
+#    Updated: 2023/12/01 19:44:10 by eseferi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME = philo
 OBJ_DIR = obj/
 SRC_DIR = src/
 
-SRC  =  main utils \
+SRC  =  main utils check_valid_input init custom\
 
 # start_threads \
 # philo_life \
@@ -32,7 +32,7 @@ OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
 # COMMANDS
 
 CC = gcc 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address -fno-omit-frame-pointer
+CFLAGS = -Wall -Wextra -Werror -g -lpthread -fsanitize=address -fno-omit-frame-pointer
 RM = rm -rf
 
 # Valgrind and Leaks

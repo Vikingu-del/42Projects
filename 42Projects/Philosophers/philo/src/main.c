@@ -6,14 +6,30 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:36:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/11/30 12:45:39 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/01 19:43:24 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(void)
+int	main(int argc, char *argv[])
 {
-    ft_putstr_fd("Hello, world!\n", STDOUT_FILENO);
-    return (0);
+	t_philo			*philos;
+	pthread_mutex_t	*forks;
+	t_data			*data;
+	
+	if (check_valid_input(argc, argv))
+		return (0);
+	else
+	{
+		philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
+		forks = malloc(sizeof(pthread_mutex_t) * ft_atoi(argv[1]));
+		if (!philos || !forks)
+			return (ft_putendl_fd(MALLOC_FAIL, 2), 1);
+		data = init_data_mutexes(philos);
+		if (!data)
+			return (free(philos), free(forks), 1);
+		init_philos(philos, forks, data, argv);
+	}
+	return (destroy_data("finished", data, forks), 0);
 }
