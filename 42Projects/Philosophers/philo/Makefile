@@ -19,7 +19,7 @@ NAME = philo
 OBJ_DIR = obj/
 SRC_DIR = src/
 
-SRC  =  init main monitor routine threads utils\
+SRC  =  init main monitor routine threads utils put_in_fd\
 
 # start_threads \
 # philo_life \

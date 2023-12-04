@@ -97,4 +97,8 @@ int					ft_strlen(char *str);
 void				print_message(char *str, t_philo *philo, int id);
 size_t				get_current_time(void);
 
+// put in fd
+int					has_only_digits(char *s);
+void				ft_putendl_fd(char *s, int fd);
+
 #endif
