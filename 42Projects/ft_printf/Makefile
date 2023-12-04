@@ -6,7 +6,7 @@
 #    By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 16:39:31 by eseferi           #+#    #+#              #
-#    Updated: 2023/06/19 23:52:04 by eseferi          ###   ########.fr        #
+#    Updated: 2023/12/04 17:51:41 by eseferi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS = ft_printf.c \
 	   ft_percent_utils.c \
 	   ft_right_combination_utils.c \
 	   ft_left_combination_utils.c \
-	   ft_hexcombos_utils.c
+	   ft_hexcombos_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

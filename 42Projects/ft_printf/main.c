@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 22:30:27 by eseferi           #+#    #+#             */
-/*   Updated: 2023/06/20 02:08:31 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/04 17:52:59 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	main(void)
 {
-	ft_printf("integer: %+223.5d\n", 1234);
-	printf("integer: %+020d\n", 1234);
+	ft_printf("integer: %x\n", -1);
+	printf("integer: %x\n", -1);
 	return (0);
 }
