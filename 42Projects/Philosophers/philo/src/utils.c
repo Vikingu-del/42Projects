@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: segfault <segfault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:25:17 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/01 13:46:51 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/04 15:02:18 by segfault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,14 @@ int	ft_is_all_digits(char *str)
 		str++;
 	}
 	return (1);
+}
+
+int	ft_usleep(size_t time)
+{
+	size_t	start;
+
+	start = gettimeofday_custom();
+	while (gettimeofday_custom() - start < time)
+		usleep(500);
+	return (0);
 }

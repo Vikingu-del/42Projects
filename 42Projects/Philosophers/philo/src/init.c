@@ -89,5 +89,17 @@ void	parse_input(t_philo *philos, char *argv[])
 	if (argv[5])
 		philos->num_times_to_eat = ft_atoi(argv[5]);
 	else
-		philos->num_times_to_eat = 0;
+		philos->num_times_to_eat = -1;
+}
+
+void	init_forks(pthread_mutex_t *forks, int num_of_philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_of_philos)
+	{
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
 }

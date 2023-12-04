@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: segfault <segfault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:36:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/01 20:11:28 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/04 15:14:52 by segfault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int	main(int argc, char *argv[])
 		data = init_data_mutexes(philos);
 		if (!data)
 			return (free(philos), free(forks), 1);
+		init_forks(forks, ft_atoi(argv[1]));
 		init_philos(philos, forks, data, argv);
-		if (create_threads(philos, data, forks))
+		if (create_threads(data, forks))
 			return (1);
 	}
 	return (destroy_data("finished", data, forks), 0);

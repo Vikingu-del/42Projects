@@ -20,7 +20,8 @@
 # define SLEEP_TIME "❌ Error: Time to sleep must be at least 1"
 # define NUM_EAT "❌ Error: Number of times to eat must be at least 1"
 # define MALLOC_FAIL "❌ Error: Malloc failed"
-# define THREAD_FAIL "❌ Error: Thread failed"
+# define THREAD_CREATE_FAIL "❌ Error: Thread create failed"
+# define THREAD_JOIN_FAIL "❌ Error: Thread join failed"
 # define MUTEX_FAIL "❌ Error: Mutex failed"
 # define TIME_FAIL "❌ Error: Time failed"
 # define FORK_FAIL "❌ Error: Fork failed"
@@ -28,18 +29,6 @@
 # define UNLOCK_FAIL "❌ Error: Unlock failed"
 # define LOCK_FAIL "❌ Error: Lock failed"
 # define MALLOC_FAIL "❌ Error: Malloc failed"
-
-/* messages */
-# define DEAD "💀 %zu %d died\n"
-# define EAT "🍽️ %zu %d is eating\n"
-# define SLEEP "💤 %zu %d is sleeping\n"
-# define THINK "🤔 %zu %d is thinking\n"
-# define TAKE_FORK "🍴 %zu %d has taken a fork\n"
-# define PUT_FORK "🍴 %zu %d has put down a fork\n"
-# define ALL_EAT "🍽️ %zu All philosophers have eaten %d times\n"
-# define ALL_DEAD "💀 %zu All philosophers have died\n"
-
-
 
 typedef struct s_philo
 {
@@ -80,6 +69,7 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_is_all_digits(char *str);
 size_t	ft_strlen(const char *s);
+int		ft_usleep(size_t time);
 
 // check_valid_input.c
 int	check_valid_input(int argc, char *argv[]);
@@ -89,15 +79,28 @@ t_data	*init_data_mutexes(t_philo *philos);
 void	destroy_data(char *str, t_data *data, pthread_mutex_t *forks);
 void	init_philos(t_philo *philos, pthread_mutex_t *forks, t_data *data, char *argv[]);
 void	parse_input(t_philo *philos, char *argv[]);
-int		create_threads(t_philo *philos, t_data *data, pthread_mutex_t *forks);
+int		create_threads(t_data *data, pthread_mutex_t *forks);
+void	init_forks(pthread_mutex_t *forks, int num_of_philos);
 
 // custom.c
 size_t	gettimeofday_custom(void);
 
 // threads.c
 int	dead_loop(t_philo *philo);
+int	create_threads(t_data *data, pthread_mutex_t *forks)
 
 // monitor.c
 void	display_message(char *str, t_philo *philo);
+int		check_if_all_ate(t_philo *philos);
+int		time_to_die(t_philo *philo, size_t time_to_die);
+int		check_if_dead(t_philo *philos);
+void	*monitor(void *arg);
+
+// routine.c
+void	think_routine(t_philo *philo);
+void	sleep_routine(t_philo *philo);
+void	eat_routine(t_philo *philo);
+void	*routine(void *arg);
+
 
 #endif
