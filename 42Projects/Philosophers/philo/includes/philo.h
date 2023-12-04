@@ -30,77 +30,71 @@
 # define LOCK_FAIL "❌ Error: Lock failed"
 # define MALLOC_FAIL "❌ Error: Malloc failed"
 
+# define PHILO_MAX 300
+
 typedef struct s_philo
 {
+	pthread_t		thread;
 	int				id;
 	int				eating;
 	int				meals_eaten;
-	int				num_of_philos;
-	int				num_times_to_eat;
-	int				*dead;
 	size_t			last_meal;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	pthread_t		thread;
+	int				num_of_philos;
+	int				num_times_to_eat;
+	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
 }					t_philo;
-
-typedef struct s_data
+typedef struct s_program
 {
 	int				dead_flag;
-	t_philo			*philos;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
-}					t_data;
+	t_philo			*philos;
+}					t_program;
 
-// utils.c
-int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
-void	ft_putchar_fd(char c, int fd);
-int		ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putendl_fd(char *s, int fd);
-int		ft_is_all_digits(char *str);
-size_t	ft_strlen(const char *s);
-int		ft_usleep(size_t time);
+// Main functions
+int					check_arg_content(char *arg);
+int					check_valid_args(char **argv);
+void				destory_all(char *str, t_program *program,
+						pthread_mutex_t *forks);
 
-// check_valid_input.c
-int	check_valid_input(int argc, char *argv[]);
+// Initialization
+void				init_program(t_program *program, t_philo *philos);
+void				init_forks(pthread_mutex_t *forks, int philo_num);
+void				init_philos(t_philo *philos, t_program *program,
+						pthread_mutex_t *forks, char **argv);
+void				init_input(t_philo *philo, char **argv);
 
-// init.c
-t_data	*init_data_mutexes(t_philo *philos);
-void	destroy_data(char *str, t_data *data, pthread_mutex_t *forks);
-void	init_philos(t_philo *philos, pthread_mutex_t *forks, t_data *data, char *argv[]);
-void	parse_input(t_philo *philos, char *argv[]);
-int		create_threads(t_data *data, pthread_mutex_t *forks);
-void	init_forks(pthread_mutex_t *forks, int num_of_philos);
+// Threads
+int					thread_create(t_program *program, pthread_mutex_t *forks);
+void				*monitor(void *pointer);
+void				*philo_routine(void *pointer);
 
-// custom.c
-size_t	gettimeofday_custom(void);
+// Actions
+void				eat(t_philo *philo);
+void				dream(t_philo *philo);
+void				think(t_philo *philo);
 
-// threads.c
-int	dead_loop(t_philo *philo);
-int	create_threads(t_data *data, pthread_mutex_t *forks)
+// Monitor utils
+int					dead_loop(t_philo *philo);
+int					check_if_all_ate(t_philo *philos);
+int					check_if_dead(t_philo *philos);
+int					philosopher_dead(t_philo *philo, size_t time_to_die);
 
-// monitor.c
-void	display_message(char *str, t_philo *philo);
-int		check_if_all_ate(t_philo *philos);
-int		time_to_die(t_philo *philo, size_t time_to_die);
-int		check_if_dead(t_philo *philos);
-void	*monitor(void *arg);
-
-// routine.c
-void	think_routine(t_philo *philo);
-void	sleep_routine(t_philo *philo);
-void	eat_routine(t_philo *philo);
-void	*routine(void *arg);
-
+// Utils
+int					ft_atoi(char *str);
+int					ft_usleep(size_t microseconds);
+int					ft_strlen(char *str);
+void				print_message(char *str, t_philo *philo, int id);
+size_t				get_current_time(void);
 
 #endif

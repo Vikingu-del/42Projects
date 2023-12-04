@@ -19,7 +19,7 @@ NAME = philo
 OBJ_DIR = obj/
 SRC_DIR = src/
 
-SRC  =  main utils check_valid_input init custom\
+SRC  =  init main monitor routine threads utils\
 
 # start_threads \
 # philo_life \

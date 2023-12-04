@@ -12,97 +12,85 @@
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
-{
-	int	sign;
-	int	value;
+// Checks the len of the string
 
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+// Own version of atoi
+
+int	ft_atoi(char *str)
+{
+	unsigned long long	nb;
+	int					sign;
+	int					i;
+
+	nb = 0;
 	sign = 1;
-	value = 0;
-	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
-		str++;
-	if (*str == '-' || *str == '+')
-		sign = 44 - *str++;
-	while (ft_isdigit(*str))
-		value = value * 10 + (*str++ - '0');
-	return (sign * value);
-}
-
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putstr_fd("8", fd);
+		nb = nb * 10 + (str[i] - '0');
+		i++;
 	}
-	else if (n < 0)
+	return (sign * nb);
+}
+// Destroys all the mutexes
+
+void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
+{
+	int	i;
+
+	i = 0;
+	if (str)
 	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
 	}
-	else
+	pthread_mutex_destroy(&program->write_lock);
+	pthread_mutex_destroy(&program->meal_lock);
+	pthread_mutex_destroy(&program->dead_lock);
+	while (i < program->philos[0].num_of_philos)
 	{
-		if (n > 9)
-			ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd(n % 10 + '0', fd);
+		pthread_mutex_destroy(&forks[i]);
+		i++;
 	}
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
+// Improved version of sleep function
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-
-int	ft_putstr_fd(char *s, int fd)
-{
-	if (!s)
-		return (1);
-	write(fd, s, ft_strlen(s));
-	return (0);
-}
-
-void	ft_putendl_fd(char *s, int fd)
-{
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
-}
-
-int	ft_is_all_digits(char *str)
-{
-	while(*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
-
-int	ft_usleep(size_t time)
+int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 
-	start = gettimeofday_custom();
-	while (gettimeofday_custom() - start < time)
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
 		usleep(500);
 	return (0);
+}
+
+// Gets the current time in milliseconds
+
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

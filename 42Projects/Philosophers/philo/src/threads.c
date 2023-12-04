@@ -12,37 +12,61 @@
 
 #include "philo.h"
 
-int	create_threads(t_data *data, pthread_mutex_t *forks)
-{
-	int			i;
-	pthread_t	*controller;
-
-	if (pthread_create(&controller, NULL, &monitor, data->philos) != 0)
-		return (destroy_data(THREAD_CREATE_FAIL, data, forks), 1);
-	i = 0;
-	while (i < data->philos[0].num_of_philos)
-	{
-		if (pthread_create(&data->philos[i].thread, NULL, &routine, &data->philos[i]) != 0)
-			return (destroy_data(THREAD_CREATE_FAIL, data, forks), 1);
-		i++;
-	}
-	i = 0;
-	if (pthread_join(controller, NULL) != 0)
-		return (destroy_data(THREAD_JOIN_FAIL, data, forks), 1);
-	while (i < data->philos[0].num_of_philos)
-	{
-		if (pthread_join(data->philos[i].thread, NULL) != 0)
-			return (destroy_data("failed to join thread", data, forks), 1);
-		i++;
-	}
-	return (0);		
-}
+// Checks if the value of dead_flag changed
 
 int	dead_loop(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
-	if (philo->dead)
+	if (*philo->dead == 1)
 		return (pthread_mutex_unlock(philo->dead_lock), 1);
-	else
-		return (pthread_mutex_unlock(philo->dead_lock), 0);
+	pthread_mutex_unlock(philo->dead_lock);
+	return (0);
 }
+
+// Thread routine
+
+void	*philo_routine(void *pointer)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)pointer;
+	if (philo->id % 2 == 0)
+		ft_usleep(1);
+	while (!dead_loop(philo))
+	{
+		eat(philo);
+		dream(philo);
+		think(philo);
+	}
+	return (pointer);
+}
+
+// Creates all the threads
+
+int	thread_create(t_program *program, pthread_mutex_t *forks)
+{
+	pthread_t	observer;
+	int			i;
+
+	if (pthread_create(&observer, NULL, &monitor, program->philos) != 0)
+		destory_all("Thread creation error", program, forks);
+	i = 0;
+	while (i < program->philos[0].num_of_philos)
+	{
+		if (pthread_create(&program->philos[i].thread, NULL, &philo_routine,
+				&program->philos[i]) != 0)
+			destory_all("Thread creation error", program, forks);
+		i++;
+	}
+	i = 0;
+	if (pthread_join(observer, NULL) != 0)
+		destory_all("Thread join error", program, forks);
+	while (i < program->philos[0].num_of_philos)
+	{
+		if (pthread_join(program->philos[i].thread, NULL) != 0)
+			destory_all("Thread join error", program, forks);
+		i++;
+	}
+	return (0);
+}
+
