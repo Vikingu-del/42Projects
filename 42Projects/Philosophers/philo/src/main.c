@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:36:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/01 19:43:24 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/01 20:11:28 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int argc, char *argv[])
 		if (!data)
 			return (free(philos), free(forks), 1);
 		init_philos(philos, forks, data, argv);
+		if (create_threads(philos, data, forks))
+			return (1);
 	}
 	return (destroy_data("finished", data, forks), 0);
 }

@@ -89,8 +89,15 @@ t_data	*init_data_mutexes(t_philo *philos);
 void	destroy_data(char *str, t_data *data, pthread_mutex_t *forks);
 void	init_philos(t_philo *philos, pthread_mutex_t *forks, t_data *data, char *argv[]);
 void	parse_input(t_philo *philos, char *argv[]);
+int		create_threads(t_philo *philos, t_data *data, pthread_mutex_t *forks);
 
 // custom.c
 size_t	gettimeofday_custom(void);
+
+// threads.c
+int	dead_loop(t_philo *philo);
+
+// monitor.c
+void	display_message(char *str, t_philo *philo);
 
 #endif
