@@ -16,8 +16,8 @@ int has_only_digits(char *s)
 	while (s[i] != '\0')
 	{
 		if (s[i] < '0' || s[i] > '9')
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
