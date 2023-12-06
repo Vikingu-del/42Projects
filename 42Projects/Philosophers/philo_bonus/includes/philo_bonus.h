@@ -56,20 +56,20 @@ typedef struct s_philo
     sem_t			*meal_lock; // Replace pthread_mutex_t with sem_t
 }					t_philo;
 
-typedef struct s_semaphores {
-    sem_t *forks;
-    sem_t *write_lock;
-    sem_t *dead_lock;
-    sem_t *meal_lock;
-} t_semaphores;
+typedef struct	s_semaphores {
+	sem_t *forks;
+	sem_t *write_lock;
+	sem_t *dead_lock;
+	sem_t *meal_lock;
+}				t_semaphores;
 
 typedef struct s_program
 {
 	int				dead_flag;
-	sem_t	        *dead_lock;
-	sem_t	        *meal_lock;
-	sem_t	        *write_lock;
-	t_philo         *philos;
+	sem_t			*dead_lock;
+	sem_t			*meal_lock;
+	sem_t			*write_lock;
+	t_philo			*philos;
 }					t_program;
 
 // Main functions
@@ -79,7 +79,7 @@ void				destory_all(char *str, t_program *program,
 						pthread_mutex_t *forks);
 
 // Initialization
-void                init_program(t_program *program, t_philo *philos, t_semaphores *sems);
+void				init_program(t_program *program, t_philo *philos, t_semaphores *sems);
 void				init_forks(pthread_mutex_t *forks, int philo_num);
 void				init_philos(t_philo *philos, t_program *program,
 						t_semaphores *sems, char **argv);
@@ -90,7 +90,7 @@ void                init_process(t_program *program);
 
 // Threads
 int					thread_create(t_program *program, pthread_mutex_t *forks);
-void                monitor(t_philo *philos);
+void				monitor(void *philos_void);
 void				philo_routine(t_philo *philo);
 
 // Actions

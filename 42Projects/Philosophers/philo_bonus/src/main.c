@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: segfault <segfault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:36:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/04 15:14:52 by segfault         ###   ########.fr       */
+/*   Updated: 2023/12/06 10:56:28 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
-// open the semaphores
-
-int	open_semaphores(t_semaphores *sems, int num)
-{
-	sems->forks = sem_open("forks", O_CREAT, 0644, num);
-	sems->write_lock = sem_open("write_lock", O_CREAT, 0644, 1);
-	sems->dead_lock = sem_open("dead_lock", O_CREAT, 0644, 1);
-	sems->meal_lock = sem_open("meal_lock", O_CREAT, 0644, 1);
-	if (sems->forks == SEM_FAILED || sems->write_lock == SEM_FAILED 
-		|| sems->dead_lock == SEM_FAILED || sems->meal_lock == SEM_FAILED)
-		return (ft_putendl_fd(SEM_OPEN_FAIL, 2), 1);
-	return (0);
-}
 
 // closes the sempahores and unlinks them
 
@@ -38,6 +24,24 @@ void close_semaphores(t_semaphores *sems)
 	sem_unlink("dead_lock");
 	sem_close(sems->meal_lock);
 	sem_unlink("meal_lock");
+}
+
+// open the semaphores
+
+int	open_semaphores(t_semaphores *sems, int num)
+{
+	int i;
+
+	i = 0;
+	close_semaphores(sems);
+	sems->forks = sem_open("forks", O_CREAT, 0644, num);
+	sems->write_lock = sem_open("write_lock", O_CREAT, 0644, 1);
+	sems->dead_lock = sem_open("dead_lock", O_CREAT, 0644, 1);
+	sems->meal_lock = sem_open("meal_lock", O_CREAT, 0644, 1);
+	if (sems->forks == SEM_FAILED || sems->write_lock == SEM_FAILED 
+		|| sems->dead_lock == SEM_FAILED || sems->meal_lock == SEM_FAILED)
+		return (ft_putendl_fd(SEM_OPEN_FAIL, 2), 1);
+	return (0);
 }
 
 // Checks that the input is only numbers
@@ -83,7 +87,7 @@ int	check_valid_args(char **argv)
 int main(int argc, char *argv[])
 {
     t_program		program;
-    t_philo			philos[PHILO_MAX];
+	t_philo			philos[PHILO_MAX];
     t_semaphores    sems;
 
     if (argc != 5 && argc != 6)

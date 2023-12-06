@@ -6,7 +6,7 @@
 #    By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 12:33:07 by eseferi           #+#    #+#              #
-#    Updated: 2023/12/01 19:44:10 by eseferi          ###   ########.fr        #
+#    Updated: 2023/12/06 06:44:58 by eseferi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ LEAKS	  = leaks --atExit --
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
+			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 			@echo "$(GREEN)$(NAME) was successfully created!$(DEFAULT)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c 

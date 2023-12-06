@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:51:50 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/01 19:36:07 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/06 13:13:47 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	init_philos(t_philo *philos, t_program *program, t_semaphores *sems,
 
 void	init_process(t_program *program)
 {
-	int i;
-	int status;
+	int			i;
+	pid_t		monitor_pid;
 
 	i = 0;
 	while (i < program->philos[0].num_of_philos)
@@ -66,14 +66,35 @@ void	init_process(t_program *program)
 			ft_putendl_fd(FORK_FAIL, 2);
 		else if (program->philos[i].pid == 0)
 		{
+			philo_routine(&program->philos[i]);
+			exit(0);
+		}
+		monitor_pid = fork();
+		if (monitor_pid < 0)
+			ft_putendl_fd(FORK_FAIL, 2);
+		else if (monitor_pid == 0)
+		{
 			monitor(&program->philos[i]);
 			exit(0);
 		}
 		i++;
-	}
-	i = 0;
-	while (i < program->philos[0].num_of_philos)
-		waitpid(program->philos[i++].pid, &status, 0);
+    }
+
+    int status;
+    while ((waitpid(-1, &status, 0)) > 0)
+    {
+        sem_wait(program->philos[0].dead_lock);
+        if (*program->philos[0].dead == 1)
+        {
+            sem_post(program->philos[0].dead_lock);
+            for (int j = 0; j < program->philos[0].num_of_philos; j++)
+            {
+                kill(program->philos[j].pid, SIGTERM);
+            }
+            break;
+        }
+        sem_post(program->philos[0].dead_lock);
+    }
 }
 
 // Initializing the program structure
