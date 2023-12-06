@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:17:52 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/06 13:04:38 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/06 23:32:46 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	check_if_all_ate(t_philo *philos)
 
 // Monitor routine
 
-void	monitor(void *philos_void)
+void	*monitor(void *philos_void)
 {
     t_philo	*philos;
     
@@ -100,6 +100,7 @@ void	monitor(void *philos_void)
     while (1)
     {
         if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
-            exit(0);
+            return (philos_void);
     }
+	return (philos_void);
 }

@@ -90,8 +90,8 @@ void                init_process(t_program *program);
 
 // Threads
 int					thread_create(t_program *program, pthread_mutex_t *forks);
-void				monitor(void *philos_void);
-void				philo_routine(t_philo *philo);
+void				*monitor(void *philos_void);
+void				philo_routine(t_philo *philo, t_program *program);
 
 // Actions
 void				eat(t_philo *philo);
