@@ -33,6 +33,7 @@
 # define MALLOC_FAIL "❌ Error: Malloc failed"
 # define SEM_OPEN_FAIL "❌ Error: Sem open failed"
 # define FORK_FAIL "❌ Error: Fork failed"
+# define PROCCES_FAIL "❌ Error: Process failed"
 
 # define PHILO_MAX 300
 
@@ -41,25 +42,27 @@ typedef struct s_philo
     pid_t			pid; // Replace pthread_t with pid_t
     int				id;
     int				eating;
-    int				meals_eaten;
     size_t			last_meal;
     size_t			time_to_die;
     size_t			time_to_eat;
     size_t			time_to_sleep;
     size_t			start_time;
     int				num_of_philos;
+	int				meals_eaten;
     int				num_times_to_eat;
     int				*dead;
-    sem_t           *forks; // Replace pthread_mutex_t with sem_t
-    sem_t			*write_lock; // Replace pthread_mutex_t with sem_t
-    sem_t			*dead_lock; // Replace pthread_mutex_t with sem_t
-    sem_t			*meal_lock; // Replace pthread_mutex_t with sem_t
+	sem_t			*meal_lock;
+    sem_t           *forks;
+    sem_t			*write_lock;
+    sem_t			*dead_lock;
+    sem_t			*stop_lock;
 }					t_philo;
 
 typedef struct	s_semaphores {
 	sem_t *forks;
 	sem_t *write_lock;
 	sem_t *dead_lock;
+	sem_t *stop_lock;
 	sem_t *meal_lock;
 }				t_semaphores;
 
@@ -67,8 +70,9 @@ typedef struct s_program
 {
 	int				dead_flag;
 	sem_t			*dead_lock;
-	sem_t			*meal_lock;
+	sem_t			*stop_lock;
 	sem_t			*write_lock;
+	sem_t			*meal_lock;
 	t_philo			*philos;
 }					t_program;
 
@@ -77,6 +81,7 @@ int					check_arg_content(char *arg);
 int					check_valid_args(char **argv);
 void				destory_all(char *str, t_program *program,
 						pthread_mutex_t *forks);
+void				kill_all(t_program *program);
 
 // Initialization
 void				init_program(t_program *program, t_philo *philos, t_semaphores *sems);
@@ -91,7 +96,7 @@ void                init_process(t_program *program);
 // Threads
 int					thread_create(t_program *program, pthread_mutex_t *forks);
 void				*monitor(void *philos_void);
-void				philo_routine(t_philo *philo, t_program *program);
+void				philo_routine(t_philo *philo);
 
 // Actions
 void				eat(t_philo *philo);

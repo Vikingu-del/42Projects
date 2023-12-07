@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:03:11 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/06 23:55:55 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/07 18:10:58 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,35 @@ int	dead_loop(t_philo *philo)
 {
 	sem_wait(philo->dead_lock);
 	if (*philo->dead == 1)
-		return (sem_post(philo->dead_lock), 1);
-	return (sem_post(philo->dead_lock), 0);
+	{
+		sem_post(philo->dead_lock);
+		return (1);
+	}
+	sem_post(philo->dead_lock);
+	return (0);
 }
 
 // Thread routine
 
-void	philo_routine(t_philo *philo, t_program *program)
+void	philo_routine(t_philo *philo)
 {
-	pthread_t	monitor_thread;
+	pthread_t	check_if_dead;
 
+	pthread_create(&check_if_dead, NULL, monitor, philo);
+	pthread_detach(check_if_dead);
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
-	// Create the monitor thread
-	printf("philos %d last meal: %zu\n",philo->id, philo->last_meal);
-	pthread_create(&monitor_thread, NULL, monitor, philo);
-	pthread_detach(monitor_thread);
 	while (!dead_loop(philo))
 	{
 		eat(philo);
+		if (philo->meals_eaten == philo->num_times_to_eat)
+		{
+			exit(2);
+		}
+		ft_usleep(10);
 		dream(philo);
 		think(philo);
 	}
-	printf("philos %d last meal: %zu\n",philo->id, philo->last_meal);
 	if (*philo->dead == 1)
-    {
-        for (int i = 0; i < program->philos[0].num_of_philos; i++)
-        {
-            if (program->philos[i].pid != philo->pid)
-            {
-                kill(program->philos[i].pid, SIGTERM);
-            }
-        }
-    }
+		exit(3);
 }

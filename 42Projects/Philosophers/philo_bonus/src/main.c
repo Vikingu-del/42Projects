@@ -6,7 +6,7 @@
 /*   By: eseferi <eseferi@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:36:18 by eseferi           #+#    #+#             */
-/*   Updated: 2023/12/06 10:56:28 by eseferi          ###   ########.fr       */
+/*   Updated: 2023/12/07 16:52:33 by eseferi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void close_semaphores(t_semaphores *sems)
 	sem_unlink("write_lock");
 	sem_close(sems->dead_lock);
 	sem_unlink("dead_lock");
-	sem_close(sems->meal_lock);
-	sem_unlink("meal_lock");
+	sem_close(sems->stop_lock);
+	sem_unlink("stop_lock");
 }
 
 // open the semaphores
@@ -37,9 +37,9 @@ int	open_semaphores(t_semaphores *sems, int num)
 	sems->forks = sem_open("forks", O_CREAT, 0644, num);
 	sems->write_lock = sem_open("write_lock", O_CREAT, 0644, 1);
 	sems->dead_lock = sem_open("dead_lock", O_CREAT, 0644, 1);
-	sems->meal_lock = sem_open("meal_lock", O_CREAT, 0644, 1);
+	sems->stop_lock = sem_open("stop_lock", O_CREAT, 0644, 1);
 	if (sems->forks == SEM_FAILED || sems->write_lock == SEM_FAILED 
-		|| sems->dead_lock == SEM_FAILED || sems->meal_lock == SEM_FAILED)
+		|| sems->dead_lock == SEM_FAILED || sems->stop_lock == SEM_FAILED)
 		return (ft_putendl_fd(SEM_OPEN_FAIL, 2), 1);
 	return (0);
 }
@@ -82,7 +82,17 @@ int	check_valid_args(char **argv)
 	return (0);
 }
 
-// Main function
+void	kill_all(t_program *program)
+{
+	int	i;
+
+	i = 0;
+	while (i < program->philos[0].num_of_philos)
+	{
+		kill(program->philos[i].pid, SIGKILL);
+		i++;
+	}
+}
 
 int main(int argc, char *argv[])
 {
@@ -98,7 +108,10 @@ int main(int argc, char *argv[])
 		return (1);
     init_program(&program, philos, &sems);
     init_philos(philos, &program, &sems, argv);
+	sem_wait(sems.stop_lock);
 	init_process(&program);
+	sem_wait(sems.stop_lock);
+	kill_all(&program);
     close_semaphores(&sems);
     return (0);
 }
